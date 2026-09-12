@@ -42,9 +42,9 @@
   --gut:clamp(18px,5vw,52px);
   --r-s:12px; --r-m:18px; --r-l:26px; --r-xl:34px;
 
-  --f:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --f-acc:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --f-mark:"Montserrat",var(--f);   /* the wordmark only — matches the supplied logo */
+  --f-mark:"Montserrat",var(--f);   /* the wordmark — kept separate so it can diverge again */
 
   --t-hero:clamp(2.2rem,7.2vw,4.8rem);
   --t-h2:clamp(1.75rem,5vw,3.2rem);

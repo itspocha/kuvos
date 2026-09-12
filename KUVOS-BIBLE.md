@@ -102,17 +102,26 @@ Two systems exist. Do not mix them up.
 fields, fitness or celebrity imagery.
 
 ### Type
-- **Manrope** 400–800 — everything structural. Headings at 800, `letter-spacing: -.038em`.
-- **Montserrat** — **the wordmark only.** `--f-mark`, applied to `.logo-txt` so the
-  header, footer and drawer lockups pick it up together. Nothing else on the page uses
-  it. `KUVOS AI` at **700**, tagline at **500**. Those weights are measured from the
-  supplied artwork, not chosen: her wordmark has a stem-to-cap ratio of 0.216, and
-  Montserrat 700 is 0.225 against 800's 0.275. Do not "round up" to 800 — it is visibly
-  heavier than the logo.
+- **Montserrat** 400–800 — everything structural. Headings at 800,
+  `letter-spacing: -.038em`. Chosen to sit closer to the reference brand the client
+  named (whoop.com), whose site sets **Proxima Nova** with **Readex Pro** as its
+  declared fallback. Proxima Nova is a commercial Adobe Fonts licence and is not
+  ours to use; Montserrat is the standard open substitute for it, and it is already
+  the wordmark, so the logo and the page are now one family.
+- **Montserrat** also remains the wordmark via `--f-mark`, kept as a separate token
+  so the lockup can diverge from body type again without a hunt. `KUVOS AI` at
+  **700**, tagline at **500** — measured from the supplied artwork, see below.
 - **Instrument Serif italic** — the accent phrase inside a headline. One per heading,
   never more. Wrapped in `<em>`. Examples: *care at home*, *held, not guessed*,
-  *observable between encounters*.
-- Fluid scale via `clamp()`. Measure: `h2` capped at 18ch, body at 58ch.
+  *observable between encounters*. **This stays.** The reference brand is all-sans;
+  dropping the serif accent would remove the most distinctive thing about this page.
+- Fluid scale via `clamp()`. Measure: `h2` capped at 18ch, body at 58ch. The measures
+  are in `ch`, so they self-adjust to the wider face and line lengths stay constant.
+
+> Montserrat sets roughly 10% wider than Manrope did, so the page is a little taller.
+> If that ever becomes a problem, **Figtree** measured 3% *narrower* than Manrope
+> while keeping the same geometric character — it is the fallback choice, not
+> Readex Pro, which is 5% wider and much rounder.
 
 > The stacked artwork (`assets/brand/source/logo-stacked.jpeg`) sets *lowercase* "kuvos"
 > in Montserrat **400** — a different lockup from the header's uppercase `KUVOS AI`.
