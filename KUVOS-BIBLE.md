@@ -103,10 +103,20 @@ fields, fitness or celebrity imagery.
 
 ### Type
 - **Manrope** 400–800 — everything structural. Headings at 800, `letter-spacing: -.038em`.
+- **Montserrat** — **the wordmark only.** `--f-mark`, applied to `.logo-txt` so the
+  header, footer and drawer lockups pick it up together. Nothing else on the page uses
+  it. `KUVOS AI` at **700**, tagline at **500**. Those weights are measured from the
+  supplied artwork, not chosen: her wordmark has a stem-to-cap ratio of 0.216, and
+  Montserrat 700 is 0.225 against 800's 0.275. Do not "round up" to 800 — it is visibly
+  heavier than the logo.
 - **Instrument Serif italic** — the accent phrase inside a headline. One per heading,
   never more. Wrapped in `<em>`. Examples: *care at home*, *held, not guessed*,
   *observable between encounters*.
 - Fluid scale via `clamp()`. Measure: `h2` capped at 18ch, body at 58ch.
+
+> The stacked artwork (`assets/brand/source/logo-stacked.jpeg`) sets *lowercase* "kuvos"
+> in Montserrat **400** — a different lockup from the header's uppercase `KUVOS AI`.
+> `kuvos-lockup-stacked.svg` reproduces it; `kuvos-lockup.svg` is the header lockup.
 
 ### Logo
 The Loop Leaf / ring mark is inline SVG using `url(#lg)` — an aqua→signal→navy gradient

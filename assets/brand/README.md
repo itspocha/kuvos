@@ -42,6 +42,19 @@ The supplied artwork's midtone is a cyan-blue (~`#0A91D1`) rather than
 match to the JPEG instead, change the middle stop — in `kuvos-mark.svg`,
 `kuvos-lockup*.svg` **and** the `#lg` gradient in `index.html`.
 
+## Type
+
+The wordmark is **Montserrat**; everything else on the site stays Manrope. The weights
+are measured from the supplied artwork rather than guessed:
+
+| Asset | Set in | Measured stem/cap |
+|---|---|---|
+| `KUVOS AI` (header lockup) | Montserrat **700** | artwork 0.216 · Montserrat 700 = 0.225 |
+| `kuvos` (stacked artwork) | Montserrat **400** | artwork 0.118 · Montserrat 400 = 0.138 |
+| tagline | Montserrat **500** | artwork 0.133 · Montserrat 500 = 0.145 |
+
+Montserrat 800 measures 0.275 — noticeably heavier than the logo. Don't use it.
+
 ## Lockup rules (bible §4)
 
 - `KUVOS AI` — `AI` in Electric Aqua `#19D3E8`

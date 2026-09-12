@@ -187,6 +187,30 @@ await t('proof questions built (6)', async () => eq(await ev(`document.querySele
 await t('FAQ built (7)', async () => eq(await ev(`document.querySelectorAll('.q').length`), 7));
 await t('marquee duplicated for a seamless loop', async () =>
   eq(await ev(`document.querySelectorAll('#mqRow .mq-i').length`), 10));
+await t('wordmark is Montserrat 700, everything else stays Manrope', async () => {
+  const r = await ev(`(()=>{
+    const b = getComputedStyle(document.querySelector('.logo-txt b'));
+    const s = getComputedStyle(document.querySelector('.logo-txt small'));
+    const body = getComputedStyle(document.body);
+    const h1 = getComputedStyle(document.querySelector('.hero h1'));
+    const lede = getComputedStyle(document.querySelector('.lede'));
+    const f = n => n.fontFamily.split(',')[0].replace(/["']/g, '');
+    return {mark:f(b), markWeight:b.fontWeight, tag:f(s), tagWeight:s.fontWeight,
+            body:f(body), h1:f(h1), lede:f(lede)};
+  })()`);
+  eq([r.mark, r.markWeight], ['Montserrat', '700'], 'wordmark');
+  eq([r.tag, r.tagWeight], ['Montserrat', '500'], 'tagline');
+  // Montserrat must not leak past the lockup
+  eq([r.body, r.h1, r.lede], ['Manrope', 'Manrope', 'Manrope'], 'page type');
+  return 'lockup Montserrat 700/500, page Manrope';
+});
+await t('Montserrat actually loaded, not silently falling back', async () => {
+  const r = await ev(`(async()=>{ await document.fonts.ready;
+    return {m700: document.fonts.check('700 16px Montserrat'),
+            m500: document.fonts.check('500 16px Montserrat'),
+            manrope: document.fonts.check('800 16px Manrope')}; })()`);
+  eq([r.m700, r.m500, r.manrope], [true, true, true]);
+});
 await t('brand mark rendered via a single sprite definition', async () => {
   eq(await ev(`document.querySelectorAll('#mark').length`), 1);
   eq(await ev(`document.querySelectorAll('use[href="#mark"]').length`), 3);
