@@ -96,17 +96,40 @@ requests run the tests but never publish.
 
 ---
 
+## Vercel — currently live
+
+`vercel.json` is committed, so a connected Vercel project needs no dashboard setup:
+
+```json
+"buildCommand": "node tools/configure.mjs && node tools/build.mjs",
+"outputDirectory": "dist"
+```
+
+This matters: without it Vercel publishes the **repo root**, which serves
+`KUVOS-BIBLE.md`, `CLAUDE.md`, the tests and Vipasana's original artwork in
+`assets/brand/source/` to anyone who guesses the path. Building to `dist/` leaves
+all of it behind.
+
+To override the origin per-environment, set `KUVOS_ORIGIN` (and optionally
+`KUVOS_EMAIL`) in **Project → Settings → Environment Variables**. Unset means the
+committed `site.config.json` value is used, so nothing breaks if you set nothing.
+
+Headers set in `vercel.json`: `nosniff`, `SAMEORIGIN`, a strict referrer policy,
+a week of caching on brand assets, and **must-revalidate on CSS and JS** — those
+filenames are not fingerprinted, so a long cache there would serve stale styling
+after a deploy.
+
 ## Any other static host
 
-Netlify, Vercel, Cloudflare Pages, S3 — all work with no configuration.
+Netlify, Cloudflare Pages, S3 — all work the same way.
 
 ```bash
 node tools/configure.mjs --origin https://your-domain --email you@your-domain
 node tools/build.mjs        # writes dist/
 ```
 
-Publish `dist/`. No build command, no environment variables, no install step.
-`404.html` is picked up automatically by Netlify, Cloudflare Pages and GitHub Pages.
+Publish `dist/`, never the repo root. `404.html` is picked up automatically by
+Netlify, Cloudflare Pages and GitHub Pages.
 
 ---
 

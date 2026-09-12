@@ -19,6 +19,7 @@ index.html               markup + inline SVG sprite
 favicon.ico              multi-size, mark on navy
 site.webmanifest         PWA icons + theme colours
 robots.txt, sitemap.xml
+vercel.json              build + headers for the Vercel deployment
 assets/css/styles.css    tokens, then components in page order, print rules last
 assets/js/main.js        content arrays + interactions
 assets/img/              photography + og-card.jpg (README inside)
@@ -67,8 +68,9 @@ node tools/configure.mjs --origin https://kuvos.ai --email hello@kuvos.ai
 
 ## Deploy
 
-See **`DEPLOY.md`**. GitHub Pages is wired up in `.github/workflows/deploy.yml`:
-every push to `main` runs the suite and publishes `dist/` if it passes.
+See **`DEPLOY.md`**. Live on Vercel — `vercel.json` builds `dist/` so the docs,
+tests and brand source artwork are never served. GitHub Pages is also wired up in
+`.github/workflows/deploy.yml`, which runs the suite before it publishes.
 
 For any other host:
 
