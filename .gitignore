@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+*.log
+
+# test runner scratch
+tests/.chrome-profile/
+
+# publish output — rebuilt by tools/build.mjs
+dist/
+
+# the original upload, kept locally for reference
+kuvos-site.zip

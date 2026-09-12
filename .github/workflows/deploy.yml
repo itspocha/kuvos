@@ -1,0 +1,71 @@
+name: Test and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test (121 checks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the configured origin and contact address are consistent
+        run: node tools/configure.mjs --check
+      - name: Run the suite
+        run: node tests/run.mjs
+        env:
+          # ubuntu-latest ships Chrome stable at this path
+          CHROME: /usr/bin/google-chrome
+
+  deploy:
+    name: Deploy
+    # only publish from main, never from a pull request
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Repository -> Settings -> Secrets and variables -> Actions -> Variables.
+      # Any variable left unset keeps whatever is in site.config.json, so the
+      # workflow is safe to run before you have configured anything.
+      - name: Apply deployment configuration
+        run: node tools/configure.mjs
+        env:
+          KUVOS_ORIGIN: ${{ vars.KUVOS_ORIGIN }}
+          KUVOS_EMAIL: ${{ vars.KUVOS_EMAIL }}
+          KUVOS_BASE_PATH: ${{ vars.KUVOS_BASE_PATH }}
+
+      - name: Build the publish directory
+        run: node tools/build.mjs
+        env:
+          KUVOS_CNAME: ${{ vars.KUVOS_CNAME }}
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
