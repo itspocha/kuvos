@@ -15,8 +15,7 @@ insurers and healthcare-data buyers. No build step, no framework, no dependencie
 Open `index.html` in a browser and it runs.
 
 ```
-index.html               the lean landing page — positioning, media slots, under 120 words
-protocol.html            the full detail page — bible §5 sequence, all the components
+index.html               all markup + inline SVG sprite (the mark lives here as #mark)
 404.html                 not-found page, reuses styles.css unchanged
 favicon.ico              multi-size, mark on navy
 site.webmanifest         PWA icons + theme colours
@@ -62,13 +61,13 @@ tests/                   automated checks, no dependencies — see its README
   (focus enters it, Escape returns focus to the burger)
 - Don't leave `TODO` in shipped markup; put it in bible §11 instead
 
-Then run the suite — it covers all of the above, both pages, and 140 more checks:
+Then run the suite — it covers all of the above and 110 more checks:
 
 ```bash
 node tests/run.mjs
 ```
 
-It must be 154/154 before you call a task done. Add a case to `tests/` for any bug
+It must be 121/121 before you call a task done. Add a case to `tests/` for any bug
 you fix, so it cannot come back.
 
 ## Common tasks
@@ -84,11 +83,6 @@ don't collide, use `.rv` for reveal, register any scroll-fired animation in the 
 function in `main.js`.
 
 **Change copy** → check it against bible §3 and §10 before writing it.
-
-**Touching the landing page** → it is deliberately sparse. `tests/5-landing.mjs` fails if
-`<main>` passes 120 words, if any dense component (table, tabs, FAQ, device mockup,
-marquee) reappears, or if the claim-discipline sentences drop off. Put detail on
-`protocol.html` instead.
 
 **Split into pages** → `/for-families` is planned but not built. It reuses `styles.css`
 unchanged. Do not fork the stylesheet.

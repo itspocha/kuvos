@@ -11,7 +11,7 @@ const WIDTHS = [320, 360, 375, 390, 414, 480, 600, 768, 834, 1024, 1180, 1280, 1
 /* ───────────── RESPONSIVE ───────────── */
 for (const w of WIDTHS) {
   await t(`${w}px: no horizontal page scroll`, async () => {
-    await goto(BASE + '/protocol.html', w, 900, w < 768);
+    await goto(BASE + '/index.html', w, 900, w < 768);
     const h = await ev(`document.documentElement.scrollHeight`);
     for (let y = 0; y < h; y += 900) { await ev(`scrollTo(0,${y})`); await sleep(70); }
     await ev(`scrollTo(0,0)`); await sleep(200);
@@ -23,7 +23,7 @@ for (const w of WIDTHS) {
   });
 }
 await t('no element escapes the viewport at 320px (narrowest)', async () => {
-  await goto(BASE + '/protocol.html', 320, 900, true);
+  await goto(BASE + '/index.html', 320, 900, true);
   await sleep(400);
   const bad = await ev(`(()=>{const de=document.documentElement;
     return [...new Set([...document.querySelectorAll('body *')].filter(el=>{
@@ -36,7 +36,7 @@ await t('no element escapes the viewport at 320px (narrowest)', async () => {
 await t('header stays intact from 320px to 1920px', async () => {
   const rows = [];
   for (const w of [320, 360, 390, 680, 1060, 1280]) {
-    await goto(BASE + '/protocol.html', w, 800, w < 768);
+    await goto(BASE + '/index.html', w, 800, w < 768);
     const r = await ev(`(()=>{
       const hdr=document.querySelector('.hdr-in').getBoundingClientRect();
       const logo=document.querySelector('.logo').getBoundingClientRect();
@@ -55,16 +55,16 @@ await t('header stays intact from 320px to 1920px', async () => {
   return rows.join('  ');
 });
 await t('hero devices stack below 1180px and layer above it', async () => {
-  await goto(BASE + '/protocol.html', 1100, 900);
+  await goto(BASE + '/index.html', 1100, 900);
   const stacked = await ev(`getComputedStyle(document.querySelector('.phone')).position`);
   eq(stacked, 'static', 'phone should be in flow below 1180px');
-  await goto(BASE + '/protocol.html', 1280, 900);
+  await goto(BASE + '/index.html', 1280, 900);
   const layered = await ev(`getComputedStyle(document.querySelector('.phone')).position`);
   eq(layered, 'absolute', 'phone should layer at 1280px');
 });
 await t('TV caption never sits under the phone at any desktop width', async () => {
   for (const w of [1180, 1280, 1366, 1440, 1920]) {
-    await goto(BASE + '/protocol.html', w, 900);
+    await goto(BASE + '/index.html', w, 900);
     const r = await ev(`(()=>{const a=document.querySelector('.remote').getBoundingClientRect(),
       b=document.querySelector('.phone').getBoundingClientRect();
       return {overlap: a.right>b.left && a.bottom>b.top && a.top<b.bottom, gap: Math.round(b.left-a.right)};})()`);
@@ -73,7 +73,7 @@ await t('TV caption never sits under the phone at any desktop width', async () =
   return 'clear at 5 widths';
 });
 await t('wide tables scroll inside .tbl-wrap, not the page', async () => {
-  await goto(BASE + '/protocol.html', 360, 900, true);
+  await goto(BASE + '/index.html', 360, 900, true);
   const r = await ev(`[...document.querySelectorAll('.tbl-wrap')].map(w=>({
     scrollable: w.scrollWidth>w.clientWidth, overflowX:getComputedStyle(w).overflowX}))`);
   ok(r.length >= 2, 'expected 2 table wrappers');
@@ -87,7 +87,7 @@ await t('buyer tabs scroll horizontally inside their rail on mobile', async () =
   ok(r.scrollable, 'tabs not scrollable at 360px');
 });
 await t('body text never drops below 12px', async () => {
-  await goto(BASE + '/protocol.html', 360, 900, true);
+  await goto(BASE + '/index.html', 360, 900, true);
   const tiny = await ev(`[...document.querySelectorAll('p,li,td,th,.lede')]
     .filter(e=>e.textContent.trim() && !e.closest('.phone,.watch,.tv,.mini')
       && parseFloat(getComputedStyle(e).fontSize) < 12)
@@ -123,7 +123,7 @@ await t('no bounce or overshoot in any curve', () => {
   }
 });
 await t('all 47 scroll reveals fire', async () => {
-  await goto(BASE + '/protocol.html', 1280, 900);
+  await goto(BASE + '/index.html', 1280, 900);
   const r = await ev(`(async()=>{const s=ms=>new Promise(r=>setTimeout(r,ms));
     const h=document.documentElement.scrollHeight;
     for(let y=0;y<h;y+=600){scrollTo(0,y);await s(300);} await s(2500);
@@ -148,7 +148,7 @@ await t('counters reach their final values', async () => {
   eq(v, ['1.4', '2.1']);
 });
 await t('hero headline lines finish their reveal', async () => {
-  await goto(BASE + '/protocol.html', 1280, 900);
+  await goto(BASE + '/index.html', 1280, 900);
   await sleep(2200);
   const off = await ev(`[...document.querySelectorAll('.hero h1 .ln>span')]
     .filter(s=>new DOMMatrix(getComputedStyle(s).transform).m42 > 1).length`);
@@ -156,7 +156,7 @@ await t('hero headline lines finish their reveal', async () => {
 });
 await t('reduced motion shows final state, animates nothing', async () => {
   await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
-  await goto(BASE + '/protocol.html', 1280, 900);
+  await goto(BASE + '/index.html', 1280, 900);
   const r = await ev(`(async()=>{const s=ms=>new Promise(r=>setTimeout(r,ms));
     const h=document.documentElement.scrollHeight;
     for(let y=0;y<h;y+=800){scrollTo(0,y);await s(120);} await s(900);
@@ -183,7 +183,7 @@ await t('scroll listener is passive and rAF-throttled', () => {
 
 /* ───────────── PERFORMANCE ───────────── */
 await t('page weight is lean', async () => {
-  await goto(BASE + '/protocol.html', 1280, 900);
+  await goto(BASE + '/index.html', 1280, 900);
   let bytes = 0, n = 0;
   for (const e of events.filter(e => e.method === 'Network.responseReceived')) {
     n++; bytes += +e.params.response.encodedDataLength || 0;

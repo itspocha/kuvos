@@ -17,10 +17,7 @@ import { dirname, join, relative } from 'node:path';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
 
-// Every .html page at the repo root ships, discovered rather than listed — a hardcoded
-// list silently drops new pages, and the broken link only shows up in production.
-const PAGES = readdirSync(ROOT).filter(f => f.endsWith('.html')).sort();
-const PUBLISH = [...PAGES, 'favicon.ico', 'site.webmanifest', 'robots.txt', 'sitemap.xml', 'assets'];
+const PUBLISH = ['index.html', '404.html', 'favicon.ico', 'site.webmanifest', 'robots.txt', 'sitemap.xml', 'assets'];
 const EXCLUDE = [join('assets', 'brand', 'source'), 'README.md'];
 
 rmSync(DIST, { recursive: true, force: true });
@@ -57,4 +54,4 @@ let files = 0, bytes = 0;
   }
 })(DIST);
 
-console.log(`dist/  ${files} files, ${(bytes / 1024).toFixed(0)}KB  (pages: ${PAGES.join(', ')})`);
+console.log(`dist/  ${files} files, ${(bytes / 1024).toFixed(0)}KB`);

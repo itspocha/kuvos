@@ -100,9 +100,8 @@
      "It is broader than a reminder app. Kuvos structures complex care plans, creates a human-authorized protocol, delivers cross-screen cues, records completion, and coordinates the right level of family or care-team visibility."]
   ];
 
-  /* ── build: buyers (absent on the lean landing page) ── */
+  /* ── build: buyers ── */
   var tabs = $("#buyerTabs"), panel = $("#buyerPanel");
-  if (tabs && panel) {
   tabs.innerHTML = BUYERS.map(function (b, i) {
     return '<button class="tab' + (i ? "" : " on") + (b.primary ? "" : " sec") +
       '" role="tab" id="btab' + i + '" aria-controls="buyerPanel" aria-selected="' +
@@ -145,25 +144,23 @@
     if (to < 0) return;
     e.preventDefault(); selectBuyer(to, true);
   });
-  }
 
   /* ── build: tables and lists ── */
-  if ($("#pathBody")) $("#pathBody").innerHTML = PATH.map(function (r) {
+  $("#pathBody").innerHTML = PATH.map(function (r) {
     return "<tr><td>" + r[0] + '</td><td><span class="chipx">' + r[1] + '</span></td><td><span class="m">' + r[2] + "</span></td></tr>";
   }).join("");
 
-  if ($("#insurerBody")) $("#insurerBody").innerHTML = INSURER.map(function (r) {
+  $("#insurerBody").innerHTML = INSURER.map(function (r) {
     return "<tr><td>" + r[0] + '</td><td><span class="m">' + r[1] + '</span></td><td><span class="chipx">' + r[2] + "</span></td></tr>";
   }).join("");
 
-  if ($("#pilotMetrics")) $("#pilotMetrics").innerHTML = METRICS.map(function (m) { return "<span>" + m + "</span>"; }).join("");
+  $("#pilotMetrics").innerHTML = METRICS.map(function (m) { return "<span>" + m + "</span>"; }).join("");
 
-  if ($("#proof")) $("#proof").innerHTML = PROOF.map(function (r) {
+  $("#proof").innerHTML = PROOF.map(function (r) {
     return '<div class="proof-row rv"><b>' + r[0] +
       '</b><span><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-pulse"/></svg>' + r[1] + "</span></div>";
   }).join("");
 
-  if ($("#faq")) {
   $("#faq").innerHTML = FAQ.map(function (f, k) {
     return '<div class="q"><h3><button class="q-btn" aria-expanded="false" aria-controls="a' + k + '">' + f[0] +
       '<svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-chev"/></svg></button></h3>' +
@@ -174,11 +171,9 @@
     var q = b.closest(".q"), open = q.classList.toggle("open");
     b.setAttribute("aria-expanded", open);
   });
-  }
 
-  /* ── announcement (absent on the lean landing page) ── */
+  /* ── announcement ── */
   var items = $$(".ann-item"), ai = 0, t = null, playing = !still;
-  if (items.length && $("#annPlay")) {
   var PLAY_ICON = '<svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M5 3.6 14 9l-9 5.4V3.6Z" fill="currentColor"/></svg>';
   var PAUSE_ICON = '<svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><rect x="5" y="3.5" width="2.6" height="11" rx="1.1" fill="currentColor"/><rect x="10.4" y="3.5" width="2.6" height="11" rx="1.1" fill="currentColor"/></svg>';
   function go() { items[ai].classList.remove("on"); ai = (ai + 1) % items.length; items[ai].classList.add("on"); }
@@ -194,12 +189,10 @@
     this.innerHTML = playing ? PAUSE_ICON : PLAY_ICON;
     if (playing) start(); else { clearInterval(t); t = null; }
   });
-  }
 
-  /* ── drawer (absent on the lean landing page) ── */
+  /* ── drawer ── */
   var drawer = $("#drawer"), scrim = $("#scrim"), burger = $("#burger");
   var opened = false;
-  if (drawer && scrim && burger) {
   function focusables() {
     return $$("a[href], button", drawer).filter(function (el) { return !el.disabled; });
   }
@@ -234,18 +227,17 @@
   scrim.addEventListener("click", close);
   document.addEventListener("click", function (e) { if (e.target.closest("[data-close]")) close(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
-  }
 
   /* ── marquee ── */
-  var row = $("#mqRow"); if (row) row.innerHTML += row.innerHTML;
+  var row = $("#mqRow"); row.innerHTML += row.innerHTML;
 
   /* ── header, progress, active nav ── */
   var hdr = $("#hdr"), bar = $("#scrollbar"), ticking = false;
   function onScroll() {
     var y = window.scrollY;
-    if (hdr) hdr.classList.toggle("stuck", y > 8);
+    hdr.classList.toggle("stuck", y > 8);
     var max = document.documentElement.scrollHeight - window.innerHeight;
-    if (bar) bar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
+    bar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
     var best = "";
     $$("main section[id]").forEach(function (s) { if (s.getBoundingClientRect().top <= 160) best = s.id; });
     $$("#nav a").forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + best); });
@@ -307,7 +299,6 @@
 
   /* ── hero phone ring ── */
   var arc = $("#phoneArc"), C = 113, target = C - C * 0.8;
-  if (!arc) return;
   if (still) arc.style.strokeDashoffset = target;
   else setTimeout(function () {
     arc.style.transition = "stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1)";

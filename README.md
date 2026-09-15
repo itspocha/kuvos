@@ -14,8 +14,7 @@ python3 -m http.server 5173
 ## Structure
 
 ```
-index.html               the lean landing page — positioning + media slots
-protocol.html            the full detail page — every component, bible §5 order
+index.html               markup + inline SVG sprite
 404.html                 not-found page, same stylesheet
 favicon.ico              multi-size, mark on navy
 site.webmanifest         PWA icons + theme colours
@@ -36,25 +35,16 @@ CLAUDE.md                instructions for Claude Code
 ## Testing
 
 ```bash
-node tests/run.mjs     # 154 checks: endpoints, a11y, responsive, motion, perf, 404
+node tests/run.mjs     # 121 checks: endpoints, a11y, responsive, motion, perf, 404
 ```
 
 No npm dependencies — Node built-ins plus the Chrome already installed. See
 `tests/README.md`. Run it before every deploy.
 
-## Two pages
-
-`index.html` is deliberately sparse — positioning, not features, with slots for an
-animated opening sequence (see `assets/img/README.md`). `protocol.html` holds the full
-detail: buyer selector, trusted-agent flow, evidence tables, Care Circle, FAQ.
-
-`main.js` is shared and guards every hook, so the lean page runs the same script without
-the components it does not have.
-
 ## Editing content
 
 Content lives in arrays at the top of `assets/js/main.js`: `BUYERS`, `PATH`, `INSURER`,
-`METRICS`, `PROOF`, `FAQ`. These drive `protocol.html`. Change the data, not the markup.
+`METRICS`, `PROOF`, `FAQ`. Change the data, not the markup.
 
 Colours live in the token block at the top of `assets/css/styles.css`. Never hardcode a
 hex in a component rule — if a colour isn't a token, it doesn't belong on the page.

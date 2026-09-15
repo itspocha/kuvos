@@ -78,7 +78,7 @@ for (let i = 0; i < 50; i++) {
 if (!up) { console.error('Chrome did not expose the devtools port in time.'); cleanup(); process.exit(2); }
 await sleep(700);
 
-const SUITES = ['5-landing.mjs', '1-endpoints.mjs', '2-accessibility.mjs', '3-responsive-motion.mjs'];
+const SUITES = ['1-endpoints.mjs', '2-accessibility.mjs', '3-responsive-motion.mjs'];
 let pass = 0, fail = 0;
 
 console.log('\n\u2500\u2500 configuration ' + '\u2500'.repeat(38));

@@ -5,7 +5,7 @@ const { t, eq, ok, results } = runner();
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 /* ───────────── A. ACCESSIBILITY ───────────── */
-await goto(BASE + '/protocol.html', 1280, 900);
+await goto(BASE + '/index.html', 1280, 900);
 
 await t('skip link is the first tab stop and becomes visible', async () => {
   await ev(`document.body.focus();document.activeElement.blur()`);
@@ -127,7 +127,7 @@ await t('FAQ answers are non-empty', async () => {
   eq(empty, 0);
 });
 await t('announcement rotates through all 3 items', async () => {
-  await goto(BASE + '/protocol.html', 1280, 900);
+  await goto(BASE + '/index.html', 1280, 900);
   const seen = new Set();
   for (let i = 0; i < 14; i++) {
     seen.add(await ev(`document.querySelector('.ann-item.on').textContent.trim().slice(0,24)`));
@@ -147,7 +147,7 @@ await t('announcement pause button stops and restarts rotation', async () => {
   ok(await ev(`document.querySelector('.ann-item.on').textContent.slice(0,20)`) !== before, 'did not resume');
 });
 await t('drawer: opens, traps focus, Escape closes and restores focus', async () => {
-  await goto(BASE + '/protocol.html', 390, 800, true);
+  await goto(BASE + '/index.html', 390, 800, true);
   await ev(`document.querySelector('#burger').click()`);
   await sleep(700);
   eq(await ev(`document.querySelector('#burger').getAttribute('aria-expanded')`), 'true');
@@ -171,7 +171,7 @@ await t('drawer closes on scrim click and on nav-link click', async () => {
   eq(await ev(`document.querySelector('#drawer').classList.contains('on')`), false, 'nav link');
 });
 await t('header gains .stuck and progress bar tracks scroll', async () => {
-  await goto(BASE + '/protocol.html', 1280, 900);
+  await goto(BASE + '/index.html', 1280, 900);
   eq(await ev(`document.querySelector('#hdr').classList.contains('stuck')`), false);
   await ev(`scrollTo(0,1200)`); await sleep(300);
   eq(await ev(`document.querySelector('#hdr').classList.contains('stuck')`), true);

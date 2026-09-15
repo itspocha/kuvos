@@ -4,7 +4,7 @@ const { send, ev, key, goto, events, close } = await connect();
 const { t, eq, ok, results } = runner();
 
 /* ───────────── 1. ENDPOINTS / ASSETS ───────────── */
-const files = ['/', '/index.html', '/protocol.html', '/404.html', '/favicon.ico', '/site.webmanifest',
+const files = ['/', '/index.html', '/404.html', '/favicon.ico', '/site.webmanifest',
   '/robots.txt', '/sitemap.xml', '/assets/css/styles.css', '/assets/js/main.js',
   '/assets/img/og-card.jpg', '/assets/brand/kuvos-mark.svg', '/assets/brand/kuvos-lockup.svg',
   '/assets/brand/kuvos-lockup-stacked.svg', '/assets/brand/apple-touch-icon.png',
@@ -49,7 +49,7 @@ await t('robots.txt allows crawling and points at sitemap', async () => {
 });
 
 /* ───────────── 2. PAGE LOADS CLEAN ───────────── */
-await goto(BASE + '/protocol.html');
+await goto(BASE + '/index.html');
 await t('no console errors or uncaught exceptions', () => {
   const bad = events.filter(e =>
     (e.method === 'Runtime.consoleAPICalled' && e.params.type === 'error') ||
@@ -173,7 +173,7 @@ await t('buyer hierarchy: 3 primary buyers before served users', async () => {
 });
 await t('footer disclaimer intact', async () =>
   ok(await ev(`document.querySelector('.disclaimer').textContent.includes('is not an emergency service')`)));
-await t('protocol.html keeps the bible section-5 order', async () => {
+await t('section order matches bible section 5', async () => {
   const ids = await ev(`[...document.querySelectorAll('main section[id]')].map(s=>s.id)`);
   eq(ids, ['gap', 'buyers', 'surfaces', 'controls', 'path', 'families', 'evidence', 'safety', 'about', 'pilot']);
 });
