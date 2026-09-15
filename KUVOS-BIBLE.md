@@ -142,9 +142,30 @@ see `assets/brand/README.md`. The tagline hides below 560px.
 
 ---
 
-## 5. PAGE SEQUENCE — LOCKED
+## 5. PAGE SEQUENCE
 
-Do not reorder without approval. This is the mandated buyer-first sequence.
+The site is **two pages**. This changed on 15 Sep 2026 at the client's request: the
+landing page was decluttered to carry positioning rather than features, with a slot
+for an animated opening sequence. The full sequence below was not deleted — it moved
+to `protocol.html` intact, in order.
+
+### `index.html` — the landing page
+
+Restraint is the specification. Under 120 words in `<main>`; the test suite fails if
+it grows past that.
+
+1. Header — mark and a single action. No nav, no burger, no drawer.
+2. **Opening** (navy, full height) — animated media slot behind one headline
+3. **Statements** — three panels, one line each, one idea per screen
+4. **Who it is for** — institutions named first, served users named second (§2)
+5. **Close** — one CTA, the no-diagnosis line, a route through to the protocol page
+6. Footer — disclaimer, unchanged
+
+Adding a section here needs a reason. The default answer is no.
+
+### `protocol.html` — the detail page
+
+The mandated buyer-first sequence. Do not reorder without approval.
 
 1. Announcement rail — claim-discipline lines, pause/play
 2. Header — sticky, scroll progress bar
@@ -165,6 +186,10 @@ Do not reorder without approval. This is the mandated buyer-first sequence.
 17. Footer — disclaimer with the confirmation-event caveat
 
 **One major visual per section.** Never place two diagrams or dashboards side by side.
+
+> Both pages carry the footer disclaimer and the no-diagnosis line. The landing page
+> also carries the human-authorization sentence. Those are not decoration — §3 applies
+> to the landing page exactly as it does to the detail page, however sparse it gets.
 
 ---
 

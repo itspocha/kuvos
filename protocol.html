@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<meta name="theme-color" content="#050D1C">
+<title>The Cross-Screen Adherence Protocol — Kuvos</title>
+<meta name="description" content="Kuvos helps hospitals, insurers, and healthcare-data buyers operate a trusted, cross-screen adherence protocol for people who cannot execute healthcare plans alone.">
+<link rel="canonical" href="https://kuvos.vercel.app/protocol.html">
+
+<!-- social -->
+<meta property="og:site_name" content="Kuvos">
+<meta property="og:title" content="The Cross-Screen Adherence Protocol — Kuvos">
+<meta property="og:description" content="Human-authorized. Accessibility-led. Built for real homes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kuvos.vercel.app/protocol.html">
+<meta property="og:image" content="https://kuvos.vercel.app/assets/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kuvos AI — the Cross-Screen Adherence Protocol for care at home.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kuvos — The Cross-Screen Adherence Protocol for care at home">
+<meta name="twitter:description" content="Human-authorized. Accessibility-led. Built for real homes.">
+<meta name="twitter:image" content="https://kuvos.vercel.app/assets/img/og-card.jpg">
+
+<!-- brand marks -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/brand/kuvos-mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/main.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kuvos",
+  "alternateName": "Kuvos AI",
+  "url": "https://kuvos.vercel.app/",
+  "logo": "https://kuvos.vercel.app/assets/brand/icon-512.png",
+  "image": "https://kuvos.vercel.app/assets/img/og-card.jpg",
+  "slogan": "Intelligent Adherence Protocols",
+  "description": "Kuvos is a care-plan execution and coordination layer. It connects smartphone, Smart TV and smartwatch into a Cross-Screen Adherence Protocol that helps anyone with incapacity follow an authorised healthcare plan one step at a time. Kuvos does not diagnose, prescribe, replace a clinician, or provide emergency care.",
+  "email": "hello@kuvos.ai",
+  "disambiguatingDescription": "B2B healthcare infrastructure and workflow platform for hospitals, insurers and risk-bearing care organisations, and healthcare-data buyers."
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#top">Skip to main content</a>
+<svg class="sprite" aria-hidden="true"><defs>
+  <linearGradient id="lg" x1="72%" y1="2%" x2="30%" y2="96%">
+    <stop offset="0%" stop-color="#19D3E8"/><stop offset="48%" stop-color="#1E5BFF"/><stop offset="100%" stop-color="#0A1830"/>
+  </linearGradient>
+  <g id="mark"><path fill="url(#lg)" d="M 89.67 28.01 L 88.14 25.23 L 86.59 22.43 L 84.68 19.85 L 82.55 17.45 L 80.2 15.26 L 77.7 13.24 L 75.07 11.4 L 72.32 9.72 L 69.5 8.18 L 66.57 6.83 L 63.54 5.7 L 60.42 4.87 L 57.25 4.22 L 54.05 3.76 L 50.81 3.5 L 47.56 3.52 L 44.33 3.78 L 41.11 4.27 L 37.93 4.97 L 34.81 5.88 L 31.76 7.02 L 28.79 8.38 L 25.93 9.94 L 23.15 11.66 L 20.51 13.58 L 18.1 15.79 L 15.76 18.07 L 13.61 20.54 L 11.65 23.14 L 9.87 25.89 L 8.29 28.75 L 6.96 31.73 L 5.76 34.77 L 4.81 37.89 L 4.08 41.07 L 3.6 44.3 L 3.32 47.55 L 3.31 50.81 L 3.46 54.07 L 3.87 57.31 L 4.5 60.5 L 5.34 63.65 L 6.52 66.69 L 7.83 69.66 L 9.31 72.55 L 10.97 75.35 L 12.87 77.98 L 14.97 80.45 L 17.21 82.79 L 19.63 84.94 L 22.16 86.94 L 24.81 88.79 L 27.61 90.39 L 30.49 91.85 L 33.47 93.07 L 36.52 94.08 L 39.65 94.82 L 42.82 95.33 L 46 95.69 L 49.2 95.75 L 52.39 95.62 L 55.56 95.27 L 58.68 94.66 L 61.75 93.84 L 64.73 92.79 L 67.65 91.58 L 70.47 90.18 L 73.15 88.53 L 75.71 86.71 L 78.11 84.71 L 80.39 82.58 L 82.5 80.31 L 84.45 77.89 L 86.18 75.33 L 87.76 72.69 L 89.13 69.94 L 90.31 67.11 L 91.29 64.22 L 92 61.25 L 92.57 58.28 L 92.87 55.26 L 92.97 52.25 L 92.83 49.25 L 92.35 46.29 L 91.72 43.39 A 0.1 0.1 0 0 1 91.53 43.42 L 91.61 46.36 L 91.44 49.28 L 91.19 52.16 L 90.79 55.01 L 90.16 57.81 L 89.42 60.56 L 88.4 63.22 L 87.27 65.82 L 85.96 68.32 L 84.48 70.72 L 82.86 73.01 L 81.06 75.15 L 79.14 77.17 L 77.1 79.06 L 74.93 80.79 L 72.64 82.33 L 70.26 83.72 L 67.79 84.92 L 65.28 86.01 L 62.71 86.9 L 60.07 87.57 L 57.4 88.07 L 54.71 88.39 L 52.02 88.55 L 49.33 88.52 L 46.65 88.28 L 43.99 87.92 L 41.39 87.3 L 38.83 86.53 L 36.33 85.62 L 33.89 84.54 L 31.53 83.33 L 29.29 81.9 L 27.11 80.37 L 25.08 78.67 L 23.19 76.81 L 21.42 74.85 L 19.81 72.75 L 18.34 70.56 L 16.97 68.31 L 15.78 65.96 L 14.8 63.51 L 14.06 60.99 L 13.38 58.46 L 12.89 55.88 L 12.57 53.27 L 12.42 50.66 L 12.52 48.04 L 12.75 45.43 L 13.18 42.84 L 13.78 40.29 L 14.55 37.79 L 15.45 35.34 L 16.61 32.99 L 17.88 30.7 L 19.31 28.51 L 20.88 26.42 L 22.59 24.44 L 24.42 22.57 L 26.45 20.92 L 28.5 19.3 L 30.66 17.82 L 32.94 16.52 L 35.31 15.4 L 37.75 14.42 L 40.25 13.62 L 42.81 12.99 L 45.4 12.56 L 48.02 12.31 L 50.66 12.23 L 53.3 12.28 L 55.93 12.54 L 58.54 13.01 L 61.1 13.7 L 63.64 14.48 L 66.12 15.43 L 68.54 16.56 L 70.84 17.91 L 73.03 19.44 L 75.1 21.13 L 77.05 22.95 L 78.93 24.85 L 80.73 26.85 L 82.54 28.87 L 84.05 31.13 A 3.22 3.22 0 0 1 89.67 28.01 Z"/></g>
+  <g id="i-tick"><path d="M3.2 8.8 6.9 12.5 14.8 4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-chev"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-arrow"><path d="M3 9h12M10.5 4.5 15 9l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-phone"><rect x="5" y="1.5" width="8" height="15" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 14h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+  <g id="i-tv"><rect x="1.5" y="3" width="15" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+  <g id="i-watch"><rect x="5" y="5" width="8" height="8" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 5V2.6h4V5M7 13v2.4h4V13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+  <g id="i-people"><circle cx="7" cy="6" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2.4 15c0-2.6 2-4.2 4.6-4.2S11.6 12.4 11.6 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12.6 5.2a2.4 2.4 0 0 1 0 4.4M13.4 15c0-1.7-.5-2.9-1.4-3.7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+  <g id="i-lock"><rect x="3.5" y="7.6" width="11" height="8" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6.2 7.6V5.4a2.8 2.8 0 0 1 5.6 0v2.2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+  <g id="i-doc"><path d="M4 2.5h6l4 4v11H4v-15Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 2.5v4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+  <g id="i-eye"><path d="M1.5 9S4.5 3.8 9 3.8 16.5 9 16.5 9 13.5 14.2 9 14.2 1.5 9 1.5 9Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="9" cy="9" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+  <g id="i-shield"><path d="M9 2 15 4.4v4.8c0 3.7-2.4 6.1-6 7.4-3.6-1.3-6-3.7-6-7.4V4.4L9 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g>
+  <g id="i-wifi"><path d="M2 6.6a10.5 10.5 0 0 1 14 0M4.6 9.6a6.6 6.6 0 0 1 8.8 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="9" cy="13.4" r="1.5" fill="currentColor"/></g>
+  <g id="i-caption"><rect x="1.5" y="3.5" width="15" height="11" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 9.6h3M10 9.6h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g>
+  <g id="i-pulse"><path d="M1.5 9h3l1.6-4.4 2.6 9 2.2-6 1.2 1.4h4.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-globe"><circle cx="9" cy="9" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 9h14M9 2c2 2.3 3 4.6 3 7s-1 4.7-3 7c-2-2.3-3-4.6-3-7s1-4.7 3-7Z" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+  <g id="i-hospital"><path d="M3 15.5V6.2L9 3l6 3.2v9.3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 7.4v4.4M6.8 9.6h4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g>
+  <g id="i-umbrella"><path d="M9 2.4v1.2M2 10a7 7 0 0 1 14 0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 10v4.2a1.8 1.8 0 0 1-3.6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></g>
+  <g id="i-db"><ellipse cx="9" cy="4.6" rx="6" ry="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 4.6v8.8c0 1.3 2.7 2.4 6 2.4s6-1.1 6-2.4V4.6M3 9c0 1.3 2.7 2.4 6 2.4s6-1.1 6-2.4" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+  <g id="i-receipt"><path d="M4 2.2h10v13.6l-2-1.2-1.6 1.2-1.4-1.2-1.4 1.2-1.6-1.2-2 1.2V2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6.6 6.4h4.8M6.6 9.4h4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></g>
+</defs></svg>
+
+<!-- ══ announcement ══ -->
+<div class="ann">
+  <div class="shell ann-in">
+    <div class="ann-track" aria-live="polite">
+      <div class="ann-item on"><span>Nothing actionable reaches the patient before <b>human authorization</b>.</span></div>
+      <div class="ann-item"><span>Now seeking clinical design partners and a defined pilot cohort.</span></div>
+      <div class="ann-item"><span>Kuvos does not diagnose, prescribe, or replace a clinician.</span></div>
+    </div>
+    <button class="ann-play" id="annPlay" aria-label="Pause announcements">
+      <svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><rect x="5" y="3.5" width="2.6" height="11" rx="1.1" fill="currentColor"/><rect x="10.4" y="3.5" width="2.6" height="11" rx="1.1" fill="currentColor"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ══ header ══ -->
+<header class="hdr" id="hdr">
+  <div class="shell hdr-in">
+    <a href="/" class="logo" aria-label="Kuvos home">
+      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="logo-txt"><b>KUVOS <i>AI</i></b><small>INTELLIGENT ADHERENCE PROTOCOLS</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#gap">The gap</a>
+      <a href="#buyers">For institutions</a>
+      <a href="#controls">How it works</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#families">For families</a>
+      <a href="#safety">Safety</a>
+    </nav>
+    <div class="hdr-end">
+      <a href="#pilot" class="btn btn-p btn-sm hdr-cta">Discuss a pilot</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="scrollbar" id="scrollbar"></div>
+</header>
+
+<main id="top" tabindex="-1">
+
+<!-- ══ hero ══ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <!-- Brand loop — see assets/video/README.md:
+         <video autoplay muted loop playsinline poster="assets/video/hero-poster.jpg">
+           <source src="assets/video/kuvos-loop.mp4" type="video/mp4"></video> -->
+    <span class="glow gh1"></span><span class="glow gh2"></span>
+  </div>
+  <div class="shell hero-grid">
+    <div>
+      <span class="eyebrow">One protocol. Three practical surfaces. One clearer day.</span>
+      <h1>
+        <span class="ln"><span>The Cross-Screen</span></span>
+        <span class="ln"><span>Adherence Protocol</span></span>
+        <span class="ln"><span>for <em>care at home.</em></span></span>
+      </h1>
+      <p class="hero-sub">Kuvos turns complex prescriptions and care plans into a clear, timed protocol across smartphone, Smart TV, and smartwatch surfaces — so hospitals, insurers, and care teams can keep an authorised plan alive after the patient goes home.</p>
+      <div class="hero-btns">
+        <a href="#controls" class="btn btn-p">See how Kuvos works</a>
+        <a href="#pilot" class="btn btn-o">Talk to the team</a>
+      </div>
+      <p class="trustline">Human-authorized. <span>Accessibility-led.</span> Built for real homes.</p>
+    </div>
+
+    <div class="stage">
+      <svg class="cue" viewBox="0 0 480 560" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M120 470 C 170 430, 250 420, 340 440"/>
+        <path d="M300 250 C 360 280, 400 350, 400 430"/>
+      </svg>
+      <span class="tag">One authorised protocol<small>Phone · Smart TV · Smartwatch</small></span>
+
+      <div class="tv">
+        <div class="tv-bar"><span>Living room</span><span class="pill"><i></i>CURRENT STEP</span></div>
+        <div class="tv-body">
+          <p class="tv-title">Morning movement session</p>
+          <p>4 guided steps · About 8 minutes</p>
+          <div class="tvprog"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="tv-cta"><span class="btn btn-p btn-sm">Confirm with remote</span></div>
+          <p class="remote"><svg width="15" height="15" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-caption"/></svg>Large captions · Strong contrast · Audio option</p>
+        </div>
+      </div>
+
+      <div class="phone" aria-hidden="true">
+        <div class="phone-in">
+          <div class="phone-top"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="phone-pad">
+            <p class="ph-title">Good morning,<br>Maya</p>
+            <div class="prog">
+              <svg width="40" height="40" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
+                <circle class="track" cx="22" cy="22" r="18" fill="none" stroke-width="5"/>
+                <circle class="arc" id="phoneArc" cx="22" cy="22" r="18" fill="none" stroke-width="5"
+                        stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="113" transform="rotate(-90 22 22)"/>
+              </svg>
+              <span><b>4 of 5 checked</b><small>3-day rhythm</small></span>
+            </div>
+            <div class="mini">
+              <span>CURRENT</span>
+              <b>Morning movement session</b>
+              <em>Now · 4 guided steps</em>
+              <div class="mini-btn">Mark done</div>
+              <div class="mini-btn ghost">I need help</div>
+            </div>
+            <p class="next"><b>Up next</b> · Wound care check</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="watch" aria-hidden="true">
+        <div class="watch-band">
+          <div class="watch-face">
+            <span>REMINDER</span>
+            <b>Step 3 of 4</b>
+            <div class="tap">Acknowledge</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ marquee ══ -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-row" id="mqRow">
+    <span class="mq-i"><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-hospital"/></svg>Hospitals</span>
+    <span class="mq-i"><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-umbrella"/></svg>Insurers &amp; risk-bearing care</span>
+    <span class="mq-i"><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-db"/></svg>Healthcare-data buyers</span>
+    <span class="mq-i"><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>Human-authorized</span>
+    <span class="mq-i">Open. Act. Done.</span>
+  </div>
+</div>
+
+<!-- ══ 1. institutional continuity gap ══ -->
+<section class="sect dark" id="gap">
+  <span class="glow g1" aria-hidden="true"></span>
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">The execution gap</span>
+      <h2>The episode ends at discharge. <em>The plan does not.</em></h2>
+      <p class="lede wide">A hospital may complete the clinical episode, but the patient still has to execute the plan at home. AHRQ describes discharge as a transfer of information from clinicians to patients and families — medications, warning signs, test results, and follow-up appointments all requiring clear communication and engagement. NCQA's Transitions of Care measure set tracks notification of admission, receipt of discharge information, patient engagement within 30 days, and medication reconciliation after discharge.</p>
+    </div>
+    <div class="gap-grid">
+      <div class="gapc rv"><span>The gap</span><b>The plan is issued. It is not executed.</b><p>The organisation issues the plan, but the patient or supporter must translate it into repeated daily behaviour after leaving the facility.</p></div>
+      <div class="gapc rv rv-1"><span>The risk</span><b>Visibility is lost, not the plan.</b><p>The post-discharge plan loses visibility, comprehension, or follow-through in the home — especially where incapacity affects execution.</p></div>
+      <div class="gapc rv rv-2"><span>How to measure it</span><b>Fall-off, not a borrowed statistic.</b><p>Low conversion should be measured as fall-off from discharge instruction to confirmed engagement, completed authorised actions, follow-up connection, or medication reconciliation.</p></div>
+    </div>
+    <p class="refline">Kuvos is positioned as a care-transition execution layer, not a readmission-prevention guarantee. Sources: AHRQ — Care Transitions From Hospital to Home (IDEAL Discharge Planning); NCQA — Transitions of Care; OECD — Integrated care delivery.</p>
+  </div>
+</section>
+
+<!-- ══ 2. buyer selector ══ -->
+<section class="sect" id="buyers">
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">Who Kuvos is for</span>
+      <h2>A trusted protocol for institutions responsible for <em>continuity of care.</em></h2>
+      <p class="lede">Hospitals, insurers, and healthcare-data buyers use Kuvos to extend authorised care plans into the home, support defined high-need populations, and access governed confirmation-event data under explicit permissions. Patients and care circles are the secondary served users whose experience generates the operational value.</p>
+    </div>
+    <div class="tabs rv" role="tablist" id="buyerTabs"></div>
+    <div class="buyer rv" id="buyerPanel" role="tabpanel" tabindex="0"></div>
+  </div>
+</section>
+
+<!-- ══ 3. three-surface network ══ -->
+<section class="sect cloud" id="surfaces">
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">The three-surface network</span>
+      <h2>One protocol across the surfaces <em>people already use.</em></h2>
+      <p class="lede">No new dedicated hardware for the core experience. Phone and Smart TV remain the primary clinical surfaces; the smartwatch extends reach without becoming a standalone clinical device.</p>
+    </div>
+    <div class="surf">
+      <article class="card rv">
+        <div class="card-art"><svg width="68" height="68" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></div>
+        <div class="card-body">
+          <span class="role">Primary · Personal control</span>
+          <h3>Smartphone</h3>
+          <p>Review protocol context, setup, permissions, preferences, confirmation, Care Circle controls, and detailed status. The personal action surface.</p>
+        </div>
+      </article>
+      <article class="card rv rv-1">
+        <div class="card-art"><svg width="76" height="76" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-tv"/></svg></div>
+        <div class="card-body">
+          <span class="role">Primary · Ambient clinical</span>
+          <h3>Smart TV</h3>
+          <p>Show the current authorised next action with large visual cues, captions, audio options, and remote-control confirmation. The primary ambient home surface.</p>
+        </div>
+      </article>
+      <article class="card rv rv-2">
+        <div class="card-art"><svg width="56" height="56" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-watch"/></svg></div>
+        <div class="card-body">
+          <span class="role">Companion surface</span>
+          <h3>Smartwatch</h3>
+          <p>Discreet reminders, haptic cues, short prompts, simple acknowledgment, and configured escalation prompts. It does not diagnose, change an instruction, or determine escalation.</p>
+        </div>
+      </article>
+    </div>
+    <div class="a11y rv">
+      <b>Accessible by design, not as an afterthought.</b>
+      <p>Kuvos is designed around real mobility and hearing limitations. It does not rely on tiny text, generic beeps, or precise touchscreen gestures as the only path to completion.</p>
+      <div class="a11y-row">
+        <span>Large captions</span><span>Strong contrast</span><span>Remote input</span><span>Visual cues</span>
+        <span>Audio options</span><span>Haptic prompts</span><span>Calmer timing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 4. trusted-agent controls ══ -->
+<section class="sect dark" id="controls">
+  <span class="glow g2" aria-hidden="true"></span>
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">Trusted-agent controls</span>
+      <h2>AI helps structure the plan. People remain responsible for <em>authorizing it.</em></h2>
+      <p class="lede wide">Kuvos is not an autonomous clinical agent. Its trust layer is built from Locked Draft State, human authorization, source-linked provenance, Care Circle permissions, and tamper-evident confirmation receipts.</p>
+    </div>
+
+    <div class="flow" id="flow">
+      <div class="node guard"><span>Safety guardrail</span><b>Source plan</b><p>A prescription, discharge summary, or referral enters the system and is stored securely.</p></div>
+      <div class="node guard"><span>Safety guardrail</span><b>AI structures</b><p>Fields extracted with source references. Two models compared and structured references cross-checked where available.</p></div>
+      <div class="node guard auth"><span><svg width="14" height="14" viewBox="0 0 18 18" aria-hidden="true"><use href="#i-lock"/></svg>Locked Draft State</span><b>Human authorizes</b><p>An authenticated reviewer approves or edits. Nothing actionable reaches the patient before this.</p></div>
+      <div class="node"><span>One clearer day</span><b>One action now</b><p>Phone, Smart TV and watch show the same current authorised step.</p></div>
+      <div class="node"><span>One clearer day</span><b>Status syncs</b><p>Completion is recorded and the Care Circle receives only the permitted update.</p></div>
+    </div>
+
+    <div class="split">
+      <div class="rv">
+        <span class="eyebrow">Review view</span>
+        <h2>Uncertainty is <em>held, not guessed.</em></h2>
+        <p class="lede">The ingestion layer extracts a constrained field set — task or medication name, dose or instruction, timing, frequency, duration — and preserves a link back to the source page or region for every item. Conflicting or uncertain fields are surfaced to the reviewer rather than silently resolved.</p>
+        <p class="warn"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg>Model agreement is not clinical approval. The Locked Draft State is a product and liability boundary: before authorization, the patient sees no actionable protocol.</p>
+      </div>
+      <div class="rv rv-1">
+        <div class="rev" id="revCard">
+          <div class="rev-top"><b>Draft protocol · under review</b><span>Source: discharge summary, 4 pages</span></div>
+          <div class="field" data-f>
+            <div class="k"><b>Morning movement session</b><small>4 guided steps · 09:00 · daily · 6 weeks</small></div>
+            <span class="srcchip">p.2 · §3</span>
+          </div>
+          <div class="field" data-f>
+            <div class="k"><b>Wound care check</b><small>Once daily · after morning session · 14 days</small></div>
+            <span class="srcchip">p.3 · §1</span>
+          </div>
+          <div class="field flag" data-f>
+            <div class="k"><b>Analgesia — frequency unclear</b><small>Source states "as needed" and "twice daily" on different pages</small>
+              <span class="flagnote"><svg width="14" height="14" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Conflict surfaced for reviewer</span>
+            </div>
+            <span class="srcchip">p.2 / p.4</span>
+          </div>
+          <div class="lockbar">
+            <svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>
+            <span><b>Locked Draft State</b><small>Not visible to the patient</small></span>
+            <span class="who">Reviewer only</span>
+          </div>
+          <div class="authed">
+            <span>Approved by <b>Dr A. Rahman</b></span>
+            <span>Authorized <b>09 Sep, 08:12</b></span>
+            <span>Protocol <b>v1.2</b></span>
+            <span>Source <b>DS-4417</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="split flip">
+      <div class="rv rv-1">
+        <div class="receipt">
+          <div class="receipt-top">
+            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg>
+            <b>Confirmation event receipt</b><span class="sig">Signed</span>
+          </div>
+          <div class="rrow"><span>Protocol version</span><b>v1.2</b></div>
+          <div class="rrow"><span>Event type</span><b>Step confirmed</b></div>
+          <div class="rrow"><span>Timestamp</span><b>09 Sep 2026, 09:14 +08</b></div>
+          <div class="rrow"><span>Device / session signal</span><b>TV remote · session 8f2c</b></div>
+          <div class="rrow"><span>Consent scope</span><b>Care Circle: status only</b></div>
+          <p class="rnote"><b>What this proves:</b> that a configured confirmation event was recorded. It does not claim that a medication was taken, that an instruction was followed perfectly, or that a clinical outcome occurred. The clinical record remains off-chain by default.</p>
+        </div>
+      </div>
+      <div class="rv">
+        <span class="eyebrow">Tamper-evident receipts</span>
+        <h2>A record of <em>what actually happened.</em></h2>
+        <p class="lede">When a patient confirms a configured care action on a TV remote, smartphone, or smartwatch, Kuvos can record a signed event receipt carrying minimum necessary metadata: protocol version, event type, timestamp, device or session signal, and consent scope.</p>
+        <div class="metrics">
+          <span>No PHI in the receipt</span><span>No medication names</span><span>No care-plan text</span><span>Withdrawable consent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5. fast path ══ -->
+<section class="sect" id="path">
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">Fast path</span>
+      <h2>A faster path through <em>a complex day.</em></h2>
+    </div>
+    <div class="tbl-wrap rv">
+      <table>
+        <thead><tr><th scope="col">Step</th><th scope="col">On screen</th><th scope="col">What it means</th></tr></thead>
+        <tbody id="pathBody"></tbody>
+      </table>
+    </div>
+    <p class="oad rv">Open. Act. Done.</p>
+  </div>
+</section>
+
+<!-- ══ 6. patient and care-circle experience ══ -->
+<section class="sect cloud" id="families">
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">The served-user experience</span>
+      <h2>Peace of mind without turning care into <em>surveillance.</em></h2>
+      <p class="lede">The Care Circle gives patients and authorized administrators control over who receives updates. A relative living abroad can see that the day is progressing without access to every clinical detail. If a protocol status needs attention, Kuvos follows a configured notification path rather than alerting everyone immediately.</p>
+    </div>
+    <div class="split">
+      <div class="rv">
+        <div class="circle-card" id="circleCard">
+          <div class="who2">
+            <span class="av">A</span>
+            <span><b>Alex</b><small>Authorized Care Circle · abroad</small></span>
+            <span class="st"><i></i>Connected</span>
+          </div>
+          <div class="msg" data-msg><small>Completion</small><b>Maya completed her morning protocol.</b><p>No action is needed from you.</p><time>6:42 PM</time></div>
+          <div class="msg" data-msg><small>Status check-in</small><b>Maya's 9:00 AM protocol step is still open.</b><p>Check in?</p><time>Now</time></div>
+          <div class="msg warnmsg" data-msg><small>Escalation</small><b>A configured care exception needs attention.</b><p>Following the approved escalation path.</p><time>Configured</time></div>
+          <p class="privacy"><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>The right people see the right amount.</p>
+        </div>
+      </div>
+      <div class="rv rv-1">
+        <div class="rhythm" id="rhythm">
+          <div class="rh-top">
+            <b>4</b><span>of 5<br>checked today</span>
+            <span class="rh-pill">3-day rhythm</span>
+          </div>
+          <div class="week">
+            <div class="day"><div class="bar"><i class="fill" data-h="80"></i></div><small>MON</small></div>
+            <div class="day"><div class="bar"><i class="fill" data-h="100"></i></div><small>TUE</small></div>
+            <div class="day"><div class="bar"><i class="fill" data-h="45"></i></div><small>WED</small></div>
+            <div class="day today"><div class="bar"><i class="fill" data-h="80"></i></div><small>TODAY</small></div>
+            <div class="day"><div class="bar"><i class="fill" data-h="0"></i></div><small>FRI</small></div>
+          </div>
+          <div class="swap-note">
+            <s>Instead of "lost streak"</s>
+            <b>Your rhythm paused. Continue with the next step.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7. governed evidence and buyer value ══ -->
+<section class="sect dark" id="evidence">
+  <span class="glow g1" aria-hidden="true"></span>
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">Governed evidence and buyer value</span>
+      <h2>Make authorised care-plan execution <em>observable between encounters.</em></h2>
+      <p class="lede wide">For hospitals, the entry point is keeping the discharge plan alive at home. For insurers and risk-bearing groups, it is making authorised care-plan execution observable between encounters. Kuvos's claims remain bounded: it can improve visibility, accessibility, and workflow continuity. Only a properly designed pilot can establish effects on readmissions, utilization, cost, or clinical outcomes.</p>
+    </div>
+
+    <div class="tbl-wrap dk rv">
+      <table>
+        <thead><tr><th scope="col">Risk-bearing concern</th><th scope="col">Kuvos response</th><th scope="col">Evidence to validate</th></tr></thead>
+        <tbody id="insurerBody"></tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-h rv">Institutional pilot metrics</h3>
+    <div class="metrics rv" id="pilotMetrics"></div>
+
+    <h3 class="sub-h rv">What we have to prove</h3>
+    <p class="lede rv">Proof questions, held as questions until pilot data exists. Mockups are not presented as clinical outcomes.</p>
+    <div class="proof" id="proof"></div>
+  </div>
+</section>
+
+<!-- ══ 8. market context ══ -->
+<section class="sect">
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">Why this matters now</span>
+      <h2>Care is moving home. <em>Execution has not caught up.</em></h2>
+      <p class="lede wide">Kuvos is designed for a global care-at-home reality: more older people, more people living with significant disability, more family support across distance, and more need for accessible digital coordination.</p>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><span>2030</span><b data-count="1.4">0</b><small>people aged 60+ (billions), WHO projection</small></div>
+      <div class="delta"><b>+50%</b><small>2030 → 2050</small></div>
+      <div class="stat"><span>2050</span><b data-count="2.1">0</b><small>people aged 60+ (billions), WHO projection</small></div>
+    </div>
+    <div class="statrow rv">
+      <div class="sr"><b>1.3 billion people — 16% of the global population</b> <span>experience significant disability (WHO).</span></div>
+      <div class="sr"><b>By 2050, 80% of older people</b> <span>are projected to live in low- and middle-income countries (WHO).</span></div>
+    </div>
+    <p class="src-note">Kuvos is for people of any age who need an adherence loop because temporary, permanent, cognitive, sensory, physical, or situational incapacity makes a care plan difficult to execute alone. Ageing is one important cohort within this broader need. These figures provide demographic and care-relevance context only. They are not a claim that every person represented is a Kuvos customer or that Kuvos has achieved a clinical outcome. Sources: WHO — Ageing and health; WHO — Disability and health.</p>
+  </div>
+</section>
+
+<!-- ══ 9. safety ══ -->
+<section class="sect dark" id="safety">
+  <div class="shell">
+    <div class="head rv">
+      <span class="eyebrow">Safety and trust architecture</span>
+      <h2>A care-plan execution and coordination layer. <em>Not an autonomous prescriber.</em></h2>
+    </div>
+    <div class="principles">
+      <div class="pr rv"><svg width="22" height="22" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><b>Traceable</b><p>Every actionable item links to source content and version history.</p></div>
+      <div class="pr rv rv-1"><svg width="22" height="22" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg><b>Reviewable</b><p>Conflicts are shown for review rather than silently guessed.</p></div>
+      <div class="pr rv rv-2"><svg width="22" height="22" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg><b>Authorized</b><p>Nothing reaches the patient as an actionable protocol before approval.</p></div>
+      <div class="pr rv rv-3"><svg width="22" height="22" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-people"/></svg><b>Permissioned</b><p>Care Circle receives only configured information — minimum necessary disclosure.</p></div>
+      <div class="pr rv rv-3"><svg width="22" height="22" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-wifi"/></svg><b>Resilient</b><p>Connectivity loss does not create unreviewed new instructions.</p></div>
+    </div>
+    <p class="refline">Kuvos does not diagnose, prescribe, replace a clinician, or provide emergency care. AI organizes source material; an authorized human controls what becomes active. Any research or analytics use requires explicit authorization, purpose limitation, data minimization, governance review, and withdrawal mechanisms. Kuvos does not sell identifiable patient data, and payment activity never activates or changes a clinical instruction.</p>
+  </div>
+</section>
+
+<!-- ══ 10. founder ══ -->
+<section class="sect" id="about">
+  <div class="shell">
+    <div class="founder rv">
+      <div>
+        <span class="eyebrow">Founder–market fit</span>
+        <h2>Built from the clinical reality of <em>the people it serves.</em></h2>
+        <p class="lede">Kuvos combines clinical experience, lived accessibility insight, healthcare product-building, AI systems, and growth execution. The founding perspective is grounded in the real friction of mobility, hearing, cognition, family distance, and complex daily routines.</p>
+        <p class="ftrust">Clinical understanding · Lived accessibility · Product discipline</p>
+      </div>
+      <div class="fbadges">
+        <div class="fb"><i><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-pulse"/></svg></i>Clinical co-founder · 10 years in practice</div>
+        <div class="fb"><i><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-people"/></svg></i>Lived patient and accessibility experience</div>
+        <div class="fb"><i><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg></i>Cross-border startup execution across SEA</div>
+        <div class="fb"><i><svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg></i>Healthcare product, AI systems and growth</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 11. faq ══ -->
+<section class="sect cloud">
+  <div class="shell">
+    <div class="head rv"><span class="eyebrow">FAQ</span><h2>Questions buyers and families <em>actually ask.</em></h2></div>
+    <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<!-- ══ 12. pilot CTA ══ -->
+<section class="sect" id="pilot">
+  <div class="shell">
+    <div class="final rv">
+      <span class="eyebrow">Run a focused pilot</span>
+      <h2>Make the next step <em>clear.</em></h2>
+      <p>Talk to us about a defined hospital, insurer, or care-programme pilot — one cohort, one operational owner, one measurable workflow outcome, one renewal decision.</p>
+      <div class="btns">
+        <a href="mailto:hello@kuvos.ai?subject=Kuvos%20pilot%20discussion" class="btn btn-p">Discuss a pilot</a>
+        <a href="mailto:hello@kuvos.ai?subject=Talk%20to%20the%20Kuvos%20team" class="btn btn-o">Talk to the team</a>
+      </div>
+      <p class="closing">Kuvos — Cross-Screen Adherence for the patients ordinary apps leave behind.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ══ footer ══ -->
+<footer class="ftr">
+  <div class="shell">
+    <div class="ftr-grid">
+      <div>
+        <a href="#top" class="logo">
+          <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><use href="#mark"/></svg>
+          <span class="logo-txt"><b>KUVOS <i>AI</i></b><small>INTELLIGENT ADHERENCE PROTOCOLS</small></span>
+        </a>
+        <p class="ftr-tag">One authorised care plan, made executable for anyone facing incapacity.</p>
+      </div>
+      <div>
+        <h3>Platform</h3>
+        <ul>
+          <li><a href="#controls">How it works</a></li>
+          <li><a href="#buyers">For care teams</a></li>
+          <li><a href="#families">For families</a></li>
+          <li><a href="#surfaces">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#safety">Safety</a></li>
+          <li><a href="#evidence">Evidence</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="mailto:hello@kuvos.ai">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">Kuvos is not an emergency service and does not replace professional medical advice, diagnosis, or treatment. Product capabilities, clinical workflows, and availability may vary by market and implementation. A patient confirmation is evidence that a configured confirmation event occurred; it is not automatically proof that a medicine was taken, that a clinical outcome occurred, or that a patient complied with a plan.</p>
+    <div class="ftr-base"><span>© 2026 Kuvos</span><span>Cross-Screen Adherence Protocol</span></div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="drawer" aria-hidden="true" inert>
+  <div class="drawer-top">
+    <span class="logo">
+      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="logo-txt"><b>KUVOS <i>AI</i></b><small>INTELLIGENT ADHERENCE PROTOCOLS</small></span>
+    </span>
+    <button class="burger" data-close aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M4 4l10 10M14 4 4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav>
+    <a href="#gap" data-close>The gap <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <a href="#buyers" data-close>For institutions <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <a href="#controls" data-close>How it works <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <a href="#evidence" data-close>Evidence <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <a href="#families" data-close>For families <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <a href="#safety" data-close>Safety <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+  </nav>
+  <a href="#pilot" class="btn btn-p btn-full" data-close>Discuss a pilot</a>
+</div>
+
+</body>
+</html>

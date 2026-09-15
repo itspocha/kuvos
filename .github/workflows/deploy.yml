@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   test:
-    name: Test (121 checks)
+    name: Test (154 checks)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

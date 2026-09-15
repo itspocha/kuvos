@@ -86,7 +86,7 @@ This path is tested — with `basePath` set, every asset, the manifest icons and
 
 ### 4. Push
 
-Every push to `main` runs the 121-check suite and, if it passes, deploys. Pull
+Every push to `main` runs the 154-check suite and, if it passes, deploys. Pull
 requests run the tests but never publish.
 
 > The test job runs headless Chrome on the runner. It passes locally on every run,
@@ -136,7 +136,7 @@ Netlify, Cloudflare Pages and GitHub Pages.
 ## Before you go live
 
 ```bash
-node tests/run.mjs          # must be 121/121
+node tests/run.mjs          # must be 154/154
 ```
 
 - Confirm the real contact address — `hello@kuvos.ai` is still a placeholder (bible §11)

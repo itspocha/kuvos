@@ -17,6 +17,46 @@ Bright, spacious, calm. Real homes, real living rooms, real ages.
 
 Export JPEG at quality 80, plus a `.webp` twin if you have it.
 
+## The landing-page opening sequence
+
+`index.html` reserves slots for the animated sequence. They are commented out, so the
+page works with nothing in them — drop files in and uncomment.
+
+| Slot | Element | Goes where |
+|---|---|---|
+| Opening loop | `.open-media` in `index.html` | full-bleed behind the headline |
+| Statement 1 | `.say-media` in `#say-1` | behind "For anyone facing incapacity" |
+| Statement 2 | `.say-media` in `#say-2` | behind the human-authorization line |
+| Statement 3 | `.say-media` in `#say-3` | behind "One protocol. Three surfaces." |
+
+**Opening loop** — `assets/video/open-loop.mp4` (+ `.webm`), 1920×1080, 8–12s seamless,
+**no audio**, under 4 MB, plus `assets/img/open-poster.jpg` as the first frame. Uncomment
+the `<video>` already written into `.open-media` and delete the two `.glow` spans beside it.
+
+`muted` and `playsinline` are both required or iOS will not autoplay.
+
+**Statement stills** — `assets/img/say-1.jpg`, `say-2.jpg`, `say-3.jpg`, 16:9, min 2400px:
+
+```html
+<div class="say-media" aria-hidden="true">
+  <img src="assets/img/say-1.jpg" alt="" loading="lazy" width="2400" height="1350">
+</div>
+```
+
+The CSS already sets `object-fit:cover`, drops them to 26% opacity and lays a navy
+scrim over the top, so headline contrast holds without you tuning anything. Keep
+`aria-hidden="true"` on the slot and `alt=""` on the image — these carry no meaning,
+and the test suite checks for it.
+
+Content direction: slow, calm, ambient. Real homes, real ages, real light. No fast
+cuts, no text, no faces in close-up, and never fitness or celebrity imagery (bible §4).
+
+Respect reduced motion:
+
+```css
+@media (prefers-reduced-motion: reduce) { .open-media video { display:none } }
+```
+
 ## Activating a slot
 
 Hero — uncomment in `styles.css`:
