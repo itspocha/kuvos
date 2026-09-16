@@ -98,8 +98,37 @@ Two systems exist. Do not mix them up.
 | `--muted` | `#57687F` | Body text on light |
 | `--on-dark` | `#A9BCD6` | Body text on navy |
 
+| `--gold` | `255,196,118` | **Photography only.** The retro warm light over section backgrounds. Held as an RGB triplet so the alpha varies per layer. Never use it for type or UI. |
+
 **Forbidden:** emerald-heavy themes, muddy greens, dense dashboards, saturated colour
 fields, fitness or celebrity imagery.
+
+### Section photography
+
+Added 16 Sep 2026 at the client's request, referencing whoop.com. Full-bleed stills
+sit behind the **dark sections only** — hero, gap, controls, evidence, safety and the
+closing card — so the navy/light alternation in §5 is untouched and the light sections
+stay clean.
+
+Each background is three layers, and the order matters:
+
+1. the graded photograph, `object-fit:cover`, slow 34s scale drift
+2. a navy scrim — directional on desktop (heavy where the copy sits, light where the
+   picture breathes), flat and heavier below 900px where copy spans the full width
+3. the golden bloom, on `mix-blend-mode:screen`, **above** the scrim
+
+Layer 3 has to sit above layer 2. Underneath it, the navy scrim cancels the warm
+grade and the photograph reads as grey murk.
+
+The delivered stills are 312–512px and carry a 3–5× upscale. `tools/make-backgrounds.py`
+absorbs that: auto-exposure to a common brightness, desaturate, tritone grade, bloom,
+vignette, then grain. The grain is structural, not decoration — it gives the eye
+high-frequency detail so the upscale reads as film. **Ask for higher-resolution
+originals before this goes in front of a buyer on a large display.**
+
+> Type over photography is checked by measurement, not by eye — `tests/6-contrast.mjs`
+> screenshots the background with every glyph hidden and scores the worst-case pixel.
+> It must stay at zero failures across 390 / 768 / 1280 / 1440.
 
 ### Type
 - **Montserrat** 400–800 — everything structural. Headings at 800,

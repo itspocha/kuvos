@@ -111,14 +111,22 @@ await t('tab arrow keys wrap in both directions', async () => {
   eq(await ev(`document.activeElement.id`), 'btab0', 'Home');
 });
 await t('all 7 FAQ items open and close', async () => {
+  // The panel opens on a 0.55s grid-template-rows transition. A fixed sleep raced
+  // it under load and made this test flaky, so poll for the state instead.
+  const until = async (expr, what, tries = 40) => {
+    for (let n = 0; n < tries; n++) {
+      if (await ev(expr)) return true;
+      await sleep(50);
+    }
+    throw new Error('timed out waiting for ' + what);
+  };
   for (let i = 0; i < 7; i++) {
     await ev(`document.querySelectorAll('.q-btn')[${i}].click()`);
-    await sleep(90);
-    eq(await ev(`document.querySelectorAll('.q-btn')[${i}].getAttribute('aria-expanded')`), 'true', 'open ' + i);
-    ok(await ev(`document.querySelectorAll('.q')[${i}].querySelector('.q-body>div').getBoundingClientRect().height`) > 0, 'no height ' + i);
+    await until(`document.querySelectorAll('.q-btn')[${i}].getAttribute('aria-expanded')==='true'`, 'open ' + i);
+    await until(`document.querySelectorAll('.q')[${i}].querySelector('.q-body>div').getBoundingClientRect().height > 0`,
+                'height on ' + i);
     await ev(`document.querySelectorAll('.q-btn')[${i}].click()`);
-    await sleep(90);
-    eq(await ev(`document.querySelectorAll('.q-btn')[${i}].getAttribute('aria-expanded')`), 'false', 'close ' + i);
+    await until(`document.querySelectorAll('.q-btn')[${i}].getAttribute('aria-expanded')==='false'`, 'close ' + i);
   }
   return '7 items toggled';
 });
@@ -182,7 +190,12 @@ await t('header gains .stuck and progress bar tracks scroll', async () => {
   return `${w1.toFixed(0)}% -> ${w2.toFixed(0)}%`;
 });
 await t('active nav link tracks the visible section', async () => {
-  await ev(`document.querySelector('#safety').scrollIntoView()`); await sleep(500);
+  // the tracker runs off a rAF-throttled scroll handler; poll rather than guess
+  await ev(`document.querySelector('#safety').scrollIntoView()`);
+  for (let n = 0; n < 40; n++) {
+    if (await ev(`document.querySelector('#nav a.on')?.getAttribute('href')==='#safety'`)) return;
+    await sleep(50);
+  }
   eq(await ev(`document.querySelector('#nav a.on')?.getAttribute('href')`), '#safety');
 });
 

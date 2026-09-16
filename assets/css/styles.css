@@ -26,6 +26,7 @@
   --track:#DDE8F5;         /* inactive progress track inside product UI */
   --teal-d:#0A7684;        /* aqua text that must hold AA on white, cloud and aqua-soft */
   --aqua-lt:#5FE3F2;       /* aqua eyebrow on the navy CTA card */
+  --gold:255,196,118;      /* retro warm light over section photography, rgb triplet */
   --lime-d:#4C7A0B;        /* lime text that must hold AA on light */
   --on-lime:#05121F;       /* type on a lime fill */
   --coral-bg:#FFF5F3;      /* attention row ground */
@@ -87,6 +88,12 @@ em,.acc{font-family:var(--f-acc);font-style:italic;font-weight:400;letter-spacin
 .lede{color:var(--muted);max-width:58ch;font-size:clamp(.98rem,1.9vw,1.12rem)}
 .eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:var(--t-xs);font-weight:800;
   letter-spacing:.09em;text-transform:uppercase;color:var(--signal)}
+/* On navy the eyebrow is aqua and the ambient glow behind it is also aqua, which
+   measured ~1:1. A tight dark plate restores contrast without dimming the glow. */
+.dark .eyebrow,.final .eyebrow,.hero .eyebrow{position:relative;isolation:isolate}
+.dark .eyebrow::before,.final .eyebrow::before,.hero .eyebrow::before{content:"";
+  position:absolute;inset:-6px -12px;z-index:-1;border-radius:100px;
+  background:rgba(5,13,28,.82)}
 .eyebrow::after{content:"";width:34px;height:2px;border-radius:2px;
   background:linear-gradient(90deg,var(--aqua),transparent)}
 .lede.wide{max-width:72ch}
@@ -98,7 +105,7 @@ em,.acc{font-family:var(--f-acc);font-style:italic;font-weight:400;letter-spacin
 .dark{background:var(--navy);color:var(--on-dark);position:relative;overflow:hidden}
 .dark h2,.dark h3,.dark h4{color:var(--white)}
 .dark .lede,.dark p{color:var(--on-dark)}
-.dark .eyebrow{color:var(--aqua)}
+.dark .eyebrow,.hero .eyebrow{color:var(--aqua)}
 .dark>.shell{position:relative}
 .glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(70px);opacity:.5}
 .g1{width:60vw;height:60vw;right:-20vw;top:-24vw;background:radial-gradient(circle,rgba(25,211,232,.30),transparent 66%)}
@@ -352,9 +359,11 @@ em,.acc{font-family:var(--f-acc);font-style:italic;font-weight:400;letter-spacin
 .flow{margin-top:clamp(32px,5vw,52px);display:grid;gap:14px}
 @media(min-width:960px){.flow{grid-template-columns:1fr 1fr 1.42fr 1fr 1fr;gap:10px}}
 .node{position:relative;border:1px solid var(--line-d);border-radius:var(--r-m);padding:18px 16px;
-  background:rgba(255,255,255,.04);opacity:.32;
+  background:linear-gradient(rgba(5,13,28,.72),rgba(5,13,28,.72)),rgba(255,255,255,.04);
+  opacity:.32;
   transition:opacity .9s var(--e),transform .9s var(--e-out),border-color .9s var(--e),background .9s var(--e)}
-.node.lit{opacity:1;transform:translateY(-4px);border-color:rgba(25,211,232,.55);background:rgba(255,255,255,.075)}
+.node.lit{opacity:1;transform:translateY(-4px);border-color:rgba(25,211,232,.55);
+  background:linear-gradient(rgba(5,13,28,.70),rgba(5,13,28,.70)),rgba(255,255,255,.075)}
 /* Human authorization must visually dominate the AI steps (bible §3). */
 .node.auth{background:rgba(25,211,232,.10);border-color:rgba(25,211,232,.45);padding:22px 20px}
 .node.auth span{display:inline-flex;align-items:center;gap:7px;color:var(--aqua)}
@@ -605,6 +614,75 @@ td .m{color:var(--muted)}
   letter-spacing:-.035em;display:flex;justify-content:space-between;align-items:center;color:var(--white)}
 .drawer nav a svg{color:var(--aqua);flex:0 0 auto}
 .drawer .btn{margin-top:22px}
+
+/* ══════════════════════════════════════════════════════════════════
+   SECTION BACKGROUNDS — full-bleed photography behind the navy fields.
+   Warm-graded stills sit under a navy scrim so the brand field still reads
+   navy and type keeps its AA contrast. Only the dark sections carry one, so
+   the navy/light alternation in bible §5 is untouched.
+   ══════════════════════════════════════════════════════════════════ */
+.sect-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.sect-bg img{width:100%;height:100%;object-fit:cover;opacity:.66;
+  transform:scale(1.06);transform-origin:center;
+  animation:bgdrift 34s ease-in-out infinite}
+/* the scrim is what keeps white type at AA over a photograph */
+/* Weighted left, where the copy sits, and light on the right so the photograph
+   is actually visible. Contrast is bought by the gradient under the type, not by
+   flattening the whole image. */
+.sect-bg::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(100deg,rgba(5,13,28,.94) 0%,rgba(5,13,28,.86) 32%,
+                             rgba(5,13,28,.55) 62%,rgba(5,13,28,.38) 100%),
+             linear-gradient(180deg,rgba(5,13,28,.72),transparent 30%,rgba(5,13,28,.78))}
+/* Retro golden bloom, laid over the scrim on screen blend so it adds light rather
+   than tinting. Without this the navy scrim cancels the warm grade underneath. */
+.sect-bg::before{content:"";position:absolute;inset:0;z-index:2;mix-blend-mode:screen;
+  background:radial-gradient(64% 78% at 78% 22%,rgba(var(--gold),.34),transparent 68%),
+             radial-gradient(90% 60% at 96% 88%,rgba(var(--gold),.16),transparent 70%)}
+@keyframes bgdrift{0%,100%{transform:scale(1.06) translate3d(0,0,0)}
+  50%{transform:scale(1.13) translate3d(-1.2%,-1.4%,0)}}
+
+/* the hero photograph sits beneath the existing glow layer */
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.70;
+  transform:scale(1.06);animation:bgdrift 38s ease-in-out infinite}
+.hero-bg::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(96deg,rgba(5,13,28,.95) 0%,rgba(5,13,28,.88) 30%,
+                             rgba(5,13,28,.52) 66%,rgba(5,13,28,.32) 100%),
+             linear-gradient(180deg,rgba(5,13,28,.62),transparent 34%,rgba(5,13,28,.82))}
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  mix-blend-mode:screen;
+  background:radial-gradient(58% 72% at 82% 26%,rgba(var(--gold),.38),transparent 66%),
+             radial-gradient(80% 56% at 98% 90%,rgba(var(--gold),.18),transparent 70%)}
+.hero .glow{z-index:3}
+
+/* the closing card carries one too */
+.final .sect-bg img{opacity:.54}
+/* the closing card is centre-aligned, so its scrim is radial rather than directional */
+.final .sect-bg::after{
+  background:radial-gradient(90% 76% at 50% 50%,rgba(5,13,28,.90),rgba(5,13,28,.66) 70%,rgba(5,13,28,.52)),
+             linear-gradient(180deg,rgba(5,13,28,.60),transparent 40%,rgba(5,13,28,.72))}
+.final .sect-bg::before{
+  background:radial-gradient(70% 80% at 84% 18%,rgba(var(--gold),.30),transparent 66%)}
+
+/* keep every section's own content above its photograph */
+.dark>.shell,.hero-grid,.final>*{position:relative;z-index:2}
+
+/* The directional scrim assumes a wide viewport, where copy sits on the dark left
+   and the photograph breathes on the right. Below 900px the copy spans the full
+   width and crosses the bright side, so the scrim goes even and heavier.
+   Measured: without this, body copy drops to 2.98-4.28:1 at 390px. */
+@media(max-width:900px){
+  .sect-bg img{opacity:.46}
+  .sect-bg::after{background:linear-gradient(180deg,rgba(5,13,28,.90),rgba(5,13,28,.84) 40%,rgba(5,13,28,.92))}
+  .sect-bg::before{background:radial-gradient(70% 50% at 78% 12%,rgba(var(--gold),.26),transparent 70%)}
+  .hero-bg img{opacity:.44}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(5,13,28,.88),rgba(5,13,28,.86) 45%,rgba(5,13,28,.94))}
+  .hero-bg::before{background:radial-gradient(66% 44% at 82% 10%,rgba(var(--gold),.28),transparent 70%)}
+  .final .sect-bg img{opacity:.40}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .sect-bg img,.hero-bg img{animation:none;transform:scale(1.04)}
+}
 
 /* ── 404 (reuses every token and component above) ── */
 .nf{position:relative;overflow:hidden;background:var(--navy);color:var(--on-dark);

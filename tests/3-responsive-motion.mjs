@@ -29,7 +29,9 @@ await t('no element escapes the viewport at 320px (narrowest)', async () => {
     return [...new Set([...document.querySelectorAll('body *')].filter(el=>{
       const r=el.getBoundingClientRect();
       return r.width>0 && (r.right>de.clientWidth+1||r.left<-1);
-    }).filter(el=>!el.closest('.mq,.drawer,.skip,.hero-bg,.glow,.tabs,.tbl-wrap'))
+    // .sect-bg/.hero-bg images are deliberately scaled past their box for the slow
+    // drift and are clipped by overflow:hidden — verified scrollWidth === clientWidth
+    }).filter(el=>!el.closest('.mq,.drawer,.skip,.hero-bg,.glow,.tabs,.tbl-wrap,.sect-bg'))
      .map(el=>el.tagName.toLowerCase()+'.'+((el.className.baseVal??el.className??'')+'').split(' ')[0]))];})()`);
   eq(bad, []);
 });
@@ -159,7 +161,16 @@ await t('reduced motion shows final state, animates nothing', async () => {
   await goto(BASE + '/index.html', 1280, 900);
   const r = await ev(`(async()=>{const s=ms=>new Promise(r=>setTimeout(r,ms));
     const h=document.documentElement.scrollHeight;
-    for(let y=0;y<h;y+=800){scrollTo(0,y);await s(120);} await s(900);
+    for(let y=0;y<h;y+=800){scrollTo(0,y);await s(120);}
+    // The counters fire from an IntersectionObserver. Lazy background images make
+    // the page slower to settle, so wait for the observers rather than guessing.
+    for(let n=0;n<60;n++){
+      const done=[...document.querySelectorAll('[data-count]')].every(c=>c.textContent!=='0');
+      const still=[...document.querySelectorAll('.rv')].every(e=>+getComputedStyle(e).opacity>=0.9);
+      if(done&&still) break;
+      await s(100);
+    }
+    await s(300);
     const hidden=[...document.querySelectorAll('.rv,.node,.field,.msg')]
       .filter(e=>+getComputedStyle(e).opacity<0.9).length;
     const longAnim=[...document.querySelectorAll('*')]

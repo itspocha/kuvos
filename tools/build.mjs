@@ -18,7 +18,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
 
 const PUBLISH = ['index.html', '404.html', 'favicon.ico', 'site.webmanifest', 'robots.txt', 'sitemap.xml', 'assets'];
-const EXCLUDE = [join('assets', 'brand', 'source'), 'README.md'];
+const EXCLUDE = [join('assets', 'brand', 'source'), join('assets', 'img', 'source'), 'README.md'];
 
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
