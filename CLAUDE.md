@@ -60,14 +60,17 @@ tests/                   automated checks, no dependencies — see its README
 - Check the keyboard path: skip link → header → tabs (arrow keys) → FAQ → drawer
   (focus enters it, Escape returns focus to the burger)
 - Don't leave `TODO` in shipped markup; put it in bible §11 instead
+- If you touch anything behind the section photography, re-run the suite —
+  `tests/6-contrast.mjs` measures real text against the real composited background
+  and is the only check that can see a photograph washing out body copy
 
-Then run the suite — it covers all of the above and 110 more checks:
+Then run the suite — it covers all of the above and 114 more checks:
 
 ```bash
 node tests/run.mjs
 ```
 
-It must be 121/121 before you call a task done. Add a case to `tests/` for any bug
+It must be 128/128 before you call a task done. Add a case to `tests/` for any bug
 you fix, so it cannot come back.
 
 ## Common tasks

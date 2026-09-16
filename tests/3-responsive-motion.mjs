@@ -161,16 +161,17 @@ await t('reduced motion shows final state, animates nothing', async () => {
   await goto(BASE + '/index.html', 1280, 900);
   const r = await ev(`(async()=>{const s=ms=>new Promise(r=>setTimeout(r,ms));
     const h=document.documentElement.scrollHeight;
-    for(let y=0;y<h;y+=800){scrollTo(0,y);await s(120);}
-    // The counters fire from an IntersectionObserver. Lazy background images make
-    // the page slower to settle, so wait for the observers rather than guessing.
-    for(let n=0;n<60;n++){
-      const done=[...document.querySelectorAll('[data-count]')].every(c=>c.textContent!=='0');
-      const still=[...document.querySelectorAll('.rv')].every(e=>+getComputedStyle(e).opacity>=0.9);
-      if(done&&still) break;
+    // Step slowly enough that each IntersectionObserver can actually report. At
+    // 800px/120ms the sweep blew past .stats without it ever registering, and the
+    // page then sat at the bottom where .stats never re-entered view, so its
+    // counters stayed at 0. Lazy background images made the page slow enough to
+    // expose it.
+    for(let y=0;y<h;y+=600){scrollTo(0,y);await s(200);}
+    for(let n=0;n<40;n++){
+      if([...document.querySelectorAll('[data-count]')].every(c=>c.textContent!=='0')) break;
       await s(100);
     }
-    await s(300);
+    await s(400);
     const hidden=[...document.querySelectorAll('.rv,.node,.field,.msg')]
       .filter(e=>+getComputedStyle(e).opacity<0.9).length;
     const longAnim=[...document.querySelectorAll('*')]

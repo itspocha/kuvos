@@ -21,8 +21,9 @@ site.webmanifest         PWA icons + theme colours
 robots.txt, sitemap.xml
 vercel.json              build + headers for the Vercel deployment
 assets/css/styles.css    tokens, then components in page order, print rules last
+assets/img/bg/           full-bleed section photography, graded (README inside)
 assets/js/main.js        content arrays + interactions
-assets/img/              photography + og-card.jpg (README inside)
+assets/img/              section backgrounds + og-card.jpg (README inside)
 assets/video/            hero loop (README inside)
 assets/brand/            marks, lockups, app icons (README inside)
 tests/                   automated checks, no dependencies (README inside)
@@ -35,7 +36,7 @@ CLAUDE.md                instructions for Claude Code
 ## Testing
 
 ```bash
-node tests/run.mjs     # 121 checks: endpoints, a11y, responsive, motion, perf, 404
+node tests/run.mjs     # 128 checks: endpoints, a11y, responsive, motion, perf, 404
 ```
 
 No npm dependencies — Node built-ins plus the Chrome already installed. See
