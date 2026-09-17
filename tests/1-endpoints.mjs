@@ -155,7 +155,7 @@ const claims = [
   'that a configured confirmation event was recorded',
   'not automatically proof that a medicine was taken',
   'care-transition execution layer, not a readmission-prevention guarantee',
-  'They are not a claim that every person represented is a Kuvos customer'];
+  'They are not a claim that every person represented is a kuvos customer'];
 for (const c of claims)
   await t('claim-discipline: "' + c.slice(0, 44) + '..."', async () =>
     ok(await ev(`document.body.innerText.includes(${JSON.stringify(c)})`), 'sentence missing'));

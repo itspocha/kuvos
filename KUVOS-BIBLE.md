@@ -92,7 +92,8 @@ Two systems exist. Do not mix them up.
 | `--aqua` | `#19D3E8` | Network cues, live states, progress, eyebrows on dark |
 | `--aqua-soft` | `#E0FAFD` | Aqua pill backgrounds |
 | `--cloud` | `#EFF5FC` | Light section ground |
-| `--white` | `#FFFFFF` | Evidence modules, cards |
+| `--white` | `#FFFFFF` | **Surfaces and fills only** — cards, evidence modules, button grounds |
+| `--cream` | `#F4F1E9` | **Type on dark.** Warmer than white against the golden photography. Every `color:`/`fill:` that was white on a navy field is now cream; backgrounds stay `--white`. |
 | `--lime` | `#8FCB2B` | **Restrained.** Daily Rhythm + watch confirm only |
 | `--coral` | `#FF6B5A` | **Attention states only.** Conflict flags, the +50% delta |
 | `--muted` | `#57687F` | Body text on light |
@@ -167,8 +168,9 @@ Supplied 17 Sep 2026. `tools/make-brand.py` regenerates all of them.
 | `kuvos-logo.svg` | combined, stacked — the primary lockup |
 | `kuvos-logo-reverse.svg` | combined for navy grounds, wordmark in white |
 
-**The wordmark is lowercase.** `kuvos`, never `Kuvos`, never `KUVOS`, and the
-`AI` suffix is retired.
+**The brand is lowercase everywhere** — in the wordmark and in prose. `kuvos`,
+never `Kuvos`, never `KUVOS`, including at the start of a sentence. The `AI`
+suffix is retired and `alternateName` has been dropped from the JSON-LD.
 
 The wordmark is **Poppins Light (300)**, identified by measurement rather than
 eye: the supplied artwork has a stem/x-height of 0.120, ascender/x-height 1.410
@@ -227,6 +229,17 @@ Two exist: `.wheel` (the care-plan flywheel, in `#controls`) and `.net` (the
 three-surface network, in `#surfaces`). Both are inline SVG driven by the palette
 tokens, both carry a `<title>` and a `<desc>`, and both are generated — see
 `tools/` — so the geometry can be retuned without hand-editing coordinates.
+
+Each diagram ships in two layouts. SVG text scales with its viewBox, so the wide
+circular flywheel rendered its labels at **6.2px** on a 390px phone — measured, not
+estimated. A font-size media query cannot fix that, because the whole coordinate
+space is being scaled by 0.39. The narrow variants (`.wheel-tall`, `.net-tall`) use
+a 420-unit viewBox instead of 900, so the same nominal size renders more than twice
+as large, and they run as a vertical sequence rather than a circle. Swap at 900px.
+
+> Put the `display:none` media query **after** the `.wheel`/`.net` base rules.
+> Media queries add no specificity, so a later `display:block` silently wins — the
+> same cascade trap that once left the burger visible next to the desktop nav.
 
 > A diagram is a picture, and a picture carries no claim-discipline weight. When
 > the flywheel replaced the old five-node row it silently took two §3 sentences

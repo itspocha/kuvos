@@ -84,18 +84,18 @@
   ];
 
   var FAQ = [
-    ["Does Kuvos replace a doctor?",
-     "No. Kuvos is a care-plan execution and coordination layer. A clinician or authorized caregiver must review and authorize the actionable protocol."],
+    ["Does kuvos replace a doctor?",
+     "No. kuvos is a care-plan execution and coordination layer. A clinician or authorized caregiver must review and authorize the actionable protocol."],
     ["What exactly does a confirmation receipt prove?",
      "That a configured confirmation event was recorded — with protocol version, event type, timestamp, device or session signal, and consent scope. It does not prove that a medicine was taken, that an instruction was followed perfectly, or that a clinical outcome occurred."],
-    ["How is Kuvos introduced commercially?",
+    ["How is kuvos introduced commercially?",
      "Through provider sponsorship, per-member licensing, or a family subscription. Providers, insurers, home-care agencies, palliative organisations and assisted-living operators can sponsor access for an eligible cohort."],
     ["Can family members living abroad use it?",
      "Yes. Authorized relatives can receive configured status updates and exception notifications without needing to manage the patient's entire clinical record."],
     ["What happens if the internet goes down?",
      "Previously authorized protocol information can continue within defined offline limits, with synchronization when connectivity returns. New or changed instructions require the appropriate authorization and integrity checks."],
-    ["Is Kuvos a medication reminder app?",
-     "It is broader than a reminder app. Kuvos structures complex care plans, creates a human-authorized protocol, delivers cross-screen cues, records completion, and coordinates the right level of family or care-team visibility."]
+    ["Is kuvos a medication reminder app?",
+     "It is broader than a reminder app. kuvos structures complex care plans, creates a human-authorized protocol, delivers cross-screen cues, records completion, and coordinates the right level of family or care-team visibility."]
   ];
 
   /* ── build: buyers ── */
