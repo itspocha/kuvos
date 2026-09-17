@@ -1,68 +1,54 @@
 # assets/brand
 
-## Files
+## The three marks
 
-| File | What it is |
+Supplied 17 Sep 2026. Regenerate with `python tools/make-brand.py`
+(set `POPPINS_LIGHT` to a Poppins Light .ttf first).
+
+| File | Use |
 |---|---|
-| `kuvos-mark.svg` | The ring mark, standalone, transparent background |
-| `kuvos-lockup.svg` | Horizontal lockup — mark + `KUVOS AI` + tagline, for light grounds |
-| `kuvos-lockup-stacked.svg` | Stacked lockup with the aqua tagline rules, matching the supplied artwork |
-| `apple-touch-icon.png` | 180×180, mark on navy |
-| `icon-192.png`, `icon-512.png` | PWA icons, referenced by `/site.webmanifest` |
-| `icon-maskable-512.png` | Same, with the 20% maskable safe zone |
-| `source/` | The original supplied artwork (JPEG) the vectors were traced from |
+| `kuvos-mark.svg` | the ring alone — favicons, avatars, anywhere too small for words |
+| `kuvos-wordmark.svg` | `kuvos` alone |
+| `kuvos-logo.svg` | combined, stacked — the primary lockup |
+| `kuvos-logo-reverse.svg` | combined for navy grounds |
+| `apple-touch-icon.png`, `icon-*.png` | app icons, mark on navy |
+| `source/` | artwork as supplied, plus the Poppins Light face. Never served. |
 
-`favicon.ico` lives at the repo root because browsers look for it there. It is a
-multi-size ICO (16 → 256) of the mark on navy.
+`favicon.ico` sits at the repo root, where browsers look for it.
 
-## The mark
+## Rules
 
-It is **not** a constant-width ring. It is a tapered enso sweep, traced from
-`source/mark.jpeg`: a 340° arc on a true circle whose stroke runs from a blunt
-terminal at the upper right, widest through the upper left, tapering to a point
-back at the right. The measured centreline is a circle to within ~1.3px, so the
-taper is the only thing that varies.
+**The wordmark is lowercase.** `kuvos` — never `Kuvos`, never `KUVOS`. The `AI`
+suffix is retired; the old `kuvos-lockup*.svg` files that carried it are gone.
 
-That shape is a single `<path>`. Do not replace it with a `<circle>` and a
-`stroke-dasharray` — that was the old approximation and it loses the taper.
+**The wordmark is outlined, not set.** It is Poppins Light (300) converted to
+vector paths, so it renders identically without the font installed. Do not
+replace it with a `<text>` element.
 
-The mark is inlined once in `index.html` as `<g id="mark">` inside the sprite
-`<defs>`, and the header, footer and drawer all reference it with
-`<use href="#mark"/>`. **If you change the mark here, change it there too** —
-they are two copies of the same path.
+On the site it is defined once in the `index.html` sprite as `#wordmark`; the
+header, footer and drawer all `<use>` it. Change it in `kuvos-wordmark.svg` and
+the sprite together, or better, re-run the generator.
+
+**The mark is a tapered enso sweep**, traced from the supplied artwork: a 340°
+arc on a true circle, widest through the upper left, tapering to a point at the
+right. It is one `<path>`. Do not rebuild it as a `<circle>` with a dasharray —
+that was the old approximation and it loses the taper.
+
+## Measurements behind the files
+
+The typeface was identified by measuring the artwork, not by eye:
+
+| | artwork | Poppins 300 | Montserrat 300 | Poppins 400 |
+|---|---|---|---|---|
+| stem / x-height | 0.120 | **0.128** | 0.096 | 0.172 |
+| ascender / x-height | 1.410 | **1.381** | 1.431 | 1.395 |
+| width / x-height | 4.980 | **4.908** | 5.244 | 5.107 |
+
+Layout, from the supplied combined logo: the ring is **0.544×** the wordmark
+width and sits **0.082×** above it.
 
 ## Gradient
 
 `url(#lg)`, aqua → signal → navy, running upper-right → lower-left
-(`x1="72%" y1="2%" x2="30%" y2="96%"`) so the aqua lands on the blunt terminal,
-as in the supplied artwork.
-
-The supplied artwork's midtone is a cyan-blue (~`#0A91D1`) rather than
-`--signal` `#1E5BFF`. The bible's three stops were kept. If you want an exact
-match to the JPEG instead, change the middle stop — in `kuvos-mark.svg`,
-`kuvos-lockup*.svg` **and** the `#lg` gradient in `index.html`.
-
-## Type
-
-The wordmark is **Montserrat**; everything else on the site stays Manrope. The weights
-are measured from the supplied artwork rather than guessed:
-
-| Asset | Set in | Measured stem/cap |
-|---|---|---|
-| `KUVOS AI` (header lockup) | Montserrat **700** | artwork 0.216 · Montserrat 700 = 0.225 |
-| `kuvos` (stacked artwork) | Montserrat **400** | artwork 0.118 · Montserrat 400 = 0.138 |
-| tagline | Montserrat **500** | artwork 0.133 · Montserrat 500 = 0.145 |
-
-Montserrat 800 measures 0.275 — noticeably heavier than the logo. Don't use it.
-
-## Lockup rules (bible §4)
-
-- `KUVOS AI` — `AI` in Electric Aqua `#19D3E8`
-- Tagline `INTELLIGENT ADHERENCE PROTOCOLS`, letter-spacing `.17em`, sized to
-  match the wordmark width, hidden below 560px in the site header
-- Mark on white, cloud-blue, or deep-ink surfaces only
-
-The lockup SVGs set type as live `<text>` in Manrope with a system fallback, so
-they render correctly anywhere Manrope is available and acceptably where it is
-not. For print or a deck where the exact letterforms matter, convert the text to
-outlines in a design tool first — that needs a font engine this repo does not have.
+(`x1="72%" y1="2%" x2="30%" y2="96%"`) so the aqua falls on the mark's blunt
+terminal, as in the artwork.

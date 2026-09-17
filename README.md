@@ -36,7 +36,7 @@ CLAUDE.md                instructions for Claude Code
 ## Testing
 
 ```bash
-node tests/run.mjs     # 128 checks: endpoints, a11y, responsive, motion, perf, 404
+node tests/run.mjs     # 129 checks: endpoints, a11y, responsive, motion, perf, 404
 ```
 
 No npm dependencies — Node built-ins plus the Chrome already installed. See

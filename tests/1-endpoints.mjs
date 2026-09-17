@@ -6,8 +6,9 @@ const { t, eq, ok, results } = runner();
 /* ───────────── 1. ENDPOINTS / ASSETS ───────────── */
 const files = ['/', '/index.html', '/404.html', '/favicon.ico', '/site.webmanifest',
   '/robots.txt', '/sitemap.xml', '/assets/css/styles.css', '/assets/js/main.js',
-  '/assets/img/og-card.jpg', '/assets/brand/kuvos-mark.svg', '/assets/brand/kuvos-lockup.svg',
-  '/assets/brand/kuvos-lockup-stacked.svg', '/assets/brand/apple-touch-icon.png',
+  '/assets/img/og-card.jpg', '/assets/brand/kuvos-mark.svg', '/assets/brand/kuvos-wordmark.svg',
+  '/assets/brand/kuvos-logo.svg', '/assets/brand/kuvos-logo-reverse.svg',
+  '/assets/brand/apple-touch-icon.png',
   '/assets/brand/icon-192.png', '/assets/brand/icon-512.png', '/assets/brand/icon-maskable-512.png'];
 for (const f of files)
   await t(`GET ${f}`, async () => {
@@ -184,25 +185,29 @@ await t('fast-path table built (7 rows)', async () => eq(await ev(`document.quer
 await t('insurer table built (4 rows)', async () => eq(await ev(`document.querySelectorAll('#insurerBody tr').length`), 4));
 await t('pilot metrics built (11)', async () => eq(await ev(`document.querySelectorAll('#pilotMetrics span').length`), 11));
 await t('proof questions built (6)', async () => eq(await ev(`document.querySelectorAll('.proof-row').length`), 6));
-await t('FAQ built (7)', async () => eq(await ev(`document.querySelectorAll('.q').length`), 7));
+await t('FAQ built (6)', async () => eq(await ev(`document.querySelectorAll('.q').length`), 6));
 await t('marquee duplicated for a seamless loop', async () =>
   eq(await ev(`document.querySelectorAll('#mqRow .mq-i').length`), 10));
 await t('type system: Montserrat structural, Instrument Serif accent', async () => {
   const r = await ev(`(()=>{
     const f = n => getComputedStyle(n).fontFamily.split(',')[0].replace(/["']/g, '');
-    const b = document.querySelector('.logo-txt b');
-    const s = document.querySelector('.logo-txt small');
     return {body:f(document.body), h1:f(document.querySelector('.hero h1')),
             lede:f(document.querySelector('.lede')),
-            accent:f(document.querySelector('.hero h1 em')),
-            mark:f(b)+' '+getComputedStyle(b).fontWeight,
-            tag:f(s)+' '+getComputedStyle(s).fontWeight};
+            accent:f(document.querySelector('.hero h1 em'))};
   })()`);
   eq([r.body, r.h1, r.lede], ['Montserrat', 'Montserrat', 'Montserrat'], 'structural type');
   eq(r.accent, 'Instrument Serif', 'the <em> accent must stay serif (bible section 4)');
-  eq(r.mark, 'Montserrat 700', 'wordmark');
-  eq(r.tag, 'Montserrat 500', 'tagline');
   return 'Montserrat + Instrument Serif';
+});
+await t('lockup uses the outlined lowercase wordmark, not text', async () => {
+  // the wordmark is Poppins Light converted to outlines and referenced from the
+  // sprite, so it renders identically without the font present
+  eq(await ev(`document.querySelectorAll('#wordmark').length`), 1, 'sprite definition');
+  eq(await ev(`document.querySelectorAll('.logo-txt .wm use[href="#wordmark"]').length`), 3, 'uses');
+  eq(await ev(`document.querySelectorAll('.logo-txt b').length`), 0, 'old text lockup still present');
+  const name = await ev(`document.querySelector('.logo-txt .wm').getAttribute('aria-label')`);
+  eq(name, 'kuvos');
+  return '1 definition, 3 uses, lowercase';
 });
 await t('both families actually load, nothing falls back', async () => {
   const r = await ev(`(async()=>{ await document.fonts.ready;

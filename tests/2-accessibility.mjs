@@ -70,8 +70,6 @@ await t('FAQ buttons expose aria-expanded and aria-controls', async () => {
   eq(await ev(`[...document.querySelectorAll('.q-btn')].every(b=>b.getAttribute('aria-expanded')==='false')`), true);
   eq(await ev(`[...document.querySelectorAll('.q-btn')].every(b=>!!document.getElementById(b.getAttribute('aria-controls')))`), true);
 });
-await t('announcement rail is an aria-live region', async () =>
-  eq(await ev(`document.querySelector('.ann-track').getAttribute('aria-live')`), 'polite'));
 await t('drawer is inert and invisible while closed', async () => {
   eq(await ev(`document.querySelector('#drawer').hasAttribute('inert')`), true);
   eq(await ev(`getComputedStyle(document.querySelector('#drawer')).visibility`), 'hidden');
@@ -110,7 +108,7 @@ await t('tab arrow keys wrap in both directions', async () => {
   await key('Home');
   eq(await ev(`document.activeElement.id`), 'btab0', 'Home');
 });
-await t('all 7 FAQ items open and close', async () => {
+await t('all 6 FAQ items open and close', async () => {
   // The panel opens on a 0.55s grid-template-rows transition. A fixed sleep raced
   // it under load and made this test flaky, so poll for the state instead.
   const until = async (expr, what, tries = 40) => {
@@ -120,7 +118,7 @@ await t('all 7 FAQ items open and close', async () => {
     }
     throw new Error('timed out waiting for ' + what);
   };
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 6; i++) {
     await ev(`document.querySelectorAll('.q-btn')[${i}].click()`);
     await until(`document.querySelectorAll('.q-btn')[${i}].getAttribute('aria-expanded')==='true'`, 'open ' + i);
     await until(`document.querySelectorAll('.q')[${i}].querySelector('.q-body>div').getBoundingClientRect().height > 0`,
@@ -128,31 +126,11 @@ await t('all 7 FAQ items open and close', async () => {
     await ev(`document.querySelectorAll('.q-btn')[${i}].click()`);
     await until(`document.querySelectorAll('.q-btn')[${i}].getAttribute('aria-expanded')==='false'`, 'close ' + i);
   }
-  return '7 items toggled';
+  return '6 items toggled';
 });
 await t('FAQ answers are non-empty', async () => {
   const empty = await ev(`[...document.querySelectorAll('.q-body p')].filter(p=>p.textContent.trim().length<40).length`);
   eq(empty, 0);
-});
-await t('announcement rotates through all 3 items', async () => {
-  await goto(BASE + '/index.html', 1280, 900);
-  const seen = new Set();
-  for (let i = 0; i < 14; i++) {
-    seen.add(await ev(`document.querySelector('.ann-item.on').textContent.trim().slice(0,24)`));
-    await sleep(900);
-  }
-  eq(seen.size, 3, 'rotated through ' + seen.size);
-});
-await t('announcement pause button stops and restarts rotation', async () => {
-  await ev(`document.querySelector('#annPlay').click()`);
-  eq(await ev(`document.querySelector('#annPlay').getAttribute('aria-label')`), 'Play announcements');
-  const before = await ev(`document.querySelector('.ann-item.on').textContent.slice(0,20)`);
-  await sleep(6200);
-  eq(await ev(`document.querySelector('.ann-item.on').textContent.slice(0,20)`), before, 'kept rotating while paused');
-  await ev(`document.querySelector('#annPlay').click()`);
-  eq(await ev(`document.querySelector('#annPlay').getAttribute('aria-label')`), 'Pause announcements');
-  await sleep(6000);
-  ok(await ev(`document.querySelector('.ann-item.on').textContent.slice(0,20)`) !== before, 'did not resume');
 });
 await t('drawer: opens, traps focus, Escape closes and restores focus', async () => {
   await goto(BASE + '/index.html', 390, 800, true);

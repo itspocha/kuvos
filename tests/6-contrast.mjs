@@ -20,7 +20,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const SEL = '.hero h1, .hero-sub, .hero .eyebrow, .trustline,' +
   '#gap h2, #gap .lede, #gap .refline, #gap .gapc b, #gap .gapc p, #gap .gapc span,' +
-  '#controls h2, #controls .lede, #controls .node b, #controls .node p, #controls .warn,' +
+  '#controls h2, #controls .lede, #controls .warn, #controls .guardrails b, #controls .guardrails li,' +
   '#evidence h2, #evidence .lede, #evidence .sub-h, #evidence .proof-row b, #evidence .proof-row span,' +
   '#safety h2, #safety .pr b, #safety .pr p, #safety .refline,' +
   '.final h2, .final p, .final .closing, .final .eyebrow';

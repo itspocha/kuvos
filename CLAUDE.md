@@ -70,7 +70,7 @@ Then run the suite — it covers all of the above and 114 more checks:
 node tests/run.mjs
 ```
 
-It must be 128/128 before you call a task done. Add a case to `tests/` for any bug
+It must be 129/129 before you call a task done. Add a case to `tests/` for any bug
 you fix, so it cannot come back.
 
 ## Common tasks

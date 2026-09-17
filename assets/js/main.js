@@ -88,8 +88,6 @@
      "No. Kuvos is a care-plan execution and coordination layer. A clinician or authorized caregiver must review and authorize the actionable protocol."],
     ["What exactly does a confirmation receipt prove?",
      "That a configured confirmation event was recorded — with protocol version, event type, timestamp, device or session signal, and consent scope. It does not prove that a medicine was taken, that an instruction was followed perfectly, or that a clinical outcome occurred."],
-    ["Does the patient need to use a phone?",
-     "No. The experience is designed to work across phone and Smart TV, with remote-control and large-control paths where supported."],
     ["How is Kuvos introduced commercially?",
      "Through provider sponsorship, per-member licensing, or a family subscription. Providers, insurers, home-care agencies, palliative organisations and assisted-living operators can sponsor access for an eligible cohort."],
     ["Can family members living abroad use it?",
@@ -170,24 +168,6 @@
     var b = e.target.closest(".q-btn"); if (!b) return;
     var q = b.closest(".q"), open = q.classList.toggle("open");
     b.setAttribute("aria-expanded", open);
-  });
-
-  /* ── announcement ── */
-  var items = $$(".ann-item"), ai = 0, t = null, playing = !still;
-  var PLAY_ICON = '<svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M5 3.6 14 9l-9 5.4V3.6Z" fill="currentColor"/></svg>';
-  var PAUSE_ICON = '<svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><rect x="5" y="3.5" width="2.6" height="11" rx="1.1" fill="currentColor"/><rect x="10.4" y="3.5" width="2.6" height="11" rx="1.1" fill="currentColor"/></svg>';
-  function go() { items[ai].classList.remove("on"); ai = (ai + 1) % items.length; items[ai].classList.add("on"); }
-  function start() { clearInterval(t); t = setInterval(go, 5200); }
-  if (playing) start();
-  else {
-    $("#annPlay").innerHTML = PLAY_ICON;
-    $("#annPlay").setAttribute("aria-label", "Play announcements");
-  }
-  $("#annPlay").addEventListener("click", function () {
-    playing = !playing;
-    this.setAttribute("aria-label", playing ? "Pause announcements" : "Play announcements");
-    this.innerHTML = playing ? PAUSE_ICON : PLAY_ICON;
-    if (playing) start(); else { clearInterval(t); t = null; }
   });
 
   /* ── drawer ── */

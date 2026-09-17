@@ -136,14 +136,31 @@ await t('all 47 scroll reveals fire', async () => {
   eq([r.off, r.faded], [0, 0]);
   return r.total + ' reveals';
 });
-await t('flow nodes light in sequence, receipt fields and messages animate in', async () => {
+await t('receipt fields, care-circle messages and rhythm bars animate in', async () => {
   const r = await ev(`(()=>({
-    nodes: [...document.querySelectorAll('#flow .node')].filter(n=>n.classList.contains('lit')).length,
     fields:[...document.querySelectorAll('#revCard [data-f]')].filter(n=>n.classList.contains('in')).length,
     msgs:  [...document.querySelectorAll('#circleCard [data-msg]')].filter(n=>n.classList.contains('in')).length,
     bars:  [...document.querySelectorAll('#rhythm .fill')].map(f=>f.style.height).filter(Boolean).length}))()`);
-  eq([r.nodes, r.fields, r.msgs, r.bars], [5, 3, 3, 5]);
-  return `flow ${r.nodes}/5, fields ${r.fields}/3, messages ${r.msgs}/3, bars ${r.bars}/5`;
+  eq([r.fields, r.msgs, r.bars], [3, 3, 5]);
+  return `fields ${r.fields}/3, messages ${r.msgs}/3, bars ${r.bars}/5`;
+});
+await t('the care-plan flywheel renders five stages, authorization dominant', async () => {
+  const r = await ev(`(()=>{
+    const nodes=[...document.querySelectorAll('.wheel .wheel-node')];
+    const auth=document.querySelector('.wheel .wheel-node.auth .wheel-disc');
+    const plain=document.querySelector('.wheel .wheel-node.plain .wheel-disc');
+    return {count:nodes.length, authR:+auth.getAttribute('r'), plainR:+plain.getAttribute('r'),
+            titled:!!document.querySelector('.wheel title'),
+            described:!!document.querySelector('.wheel desc')};})()`);
+  eq(r.count, 5, 'stages');
+  ok(r.authR > r.plainR, `auth disc ${r.authR} must exceed ${r.plainR} (bible section 3)`);
+  eq([r.titled, r.described], [true, true], 'diagram needs title and desc for AT');
+  return `5 stages, auth disc ${r.authR} vs ${r.plainR}`;
+});
+await t('the three-surface diagram is labelled for assistive tech', async () => {
+  eq(await ev(`document.querySelectorAll('.net .net-node').length`), 3);
+  ok(await ev(`!!document.querySelector('.net title') && !!document.querySelector('.net desc')`),
+     'title/desc missing');
 });
 await t('counters reach their final values', async () => {
   const v = await ev(`[...document.querySelectorAll('[data-count]')].map(c=>c.textContent)`);
@@ -179,11 +196,10 @@ await t('reduced motion shows final state, animates nothing', async () => {
         return d && d!=='0s' && parseFloat(d)>0.01;}).length;
     const bars=[...document.querySelectorAll('#rhythm .fill')].map(f=>f.style.height);
     return {hidden,longAnim,bars,counters:[...document.querySelectorAll('[data-count]')].map(c=>c.textContent),
-            annLabel:document.querySelector('#annPlay').getAttribute('aria-label')};})()`);
+            };})()`);
   eq(r.hidden, 0, 'elements left invisible');
   eq(r.longAnim, 0, 'animations still running');
   eq(r.counters, ['1.4', '2.1']);
-  eq(r.annLabel, 'Play announcements');
   await send('Emulation.setEmulatedMedia', { features: [] });
   return 'nothing hidden, no animation, final values shown';
 });

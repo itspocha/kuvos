@@ -156,6 +156,32 @@ originals before this goes in front of a buyer on a large display.**
 > in Montserrat **400** — a different lockup from the header's uppercase `KUVOS AI`.
 > `kuvos-lockup-stacked.svg` reproduces it; `kuvos-lockup.svg` is the header lockup.
 
+### Brand kit — three marks
+
+Supplied 17 Sep 2026. `tools/make-brand.py` regenerates all of them.
+
+| File | Use |
+|---|---|
+| `kuvos-mark.svg` | the ring alone — favicons, avatars, anywhere too small for words |
+| `kuvos-wordmark.svg` | `kuvos` alone — lowercase, always |
+| `kuvos-logo.svg` | combined, stacked — the primary lockup |
+| `kuvos-logo-reverse.svg` | combined for navy grounds, wordmark in white |
+
+**The wordmark is lowercase.** `kuvos`, never `Kuvos`, never `KUVOS`, and the
+`AI` suffix is retired.
+
+The wordmark is **Poppins Light (300)**, identified by measurement rather than
+eye: the supplied artwork has a stem/x-height of 0.120, ascender/x-height 1.410
+and width/x-height 4.980; Poppins 300 matches at 0.128 / 1.381 / 4.908, clearly
+ahead of Montserrat 300 or Poppins 400.
+
+It ships as **outlined paths, not live text**, so it renders identically on a
+machine with no Poppins installed. On the site it lives once in the sprite as
+`#wordmark` and the header, footer and drawer reference it with `<use>`.
+
+Proportions, taken from the supplied combined logo: the ring is **0.544×** the
+wordmark width, sitting **0.082×** above it.
+
 ### Logo
 The Loop Leaf / ring mark is inline SVG using `url(#lg)` — an aqua→signal→navy gradient
 running upper-right → lower-left, so the aqua falls on the mark's blunt terminal.
@@ -181,8 +207,8 @@ Do not reorder without approval. This is the mandated buyer-first sequence.
 4. Marquee — buyer types
 5. **The execution gap** (navy) — AHRQ / NCQA framing, three gap cards
 6. **Buyer selector** (white) — 6 tabs, primary buyers first, served users dashed
-7. **Three-surface network** (cloud) — phone + TV primary, watch companion, a11y strip
-8. **Trusted-agent controls** (navy) — 5-node flow → Review view → Receipt
+7. **Three-surface network** (cloud) — network diagram, watch dashed as companion, a11y strip
+8. **Trusted-agent controls** (navy) — care-plan flywheel → guardrails → Review view → Receipt
 9. **Fast path** (white) — 7-row table, "Open. Act. Done."
 10. **Served-user experience** (cloud) — Care Circle + Daily Rhythm
 11. **Governed evidence** (navy) — insurer table, pilot metrics, proof questions
@@ -194,6 +220,20 @@ Do not reorder without approval. This is the mandated buyer-first sequence.
 17. Footer — disclaimer with the confirmation-event caveat
 
 **One major visual per section.** Never place two diagrams or dashboards side by side.
+
+### Diagrams
+
+Two exist: `.wheel` (the care-plan flywheel, in `#controls`) and `.net` (the
+three-surface network, in `#surfaces`). Both are inline SVG driven by the palette
+tokens, both carry a `<title>` and a `<desc>`, and both are generated — see
+`tools/` — so the geometry can be retuned without hand-editing coordinates.
+
+> A diagram is a picture, and a picture carries no claim-discipline weight. When
+> the flywheel replaced the old five-node row it silently took two §3 sentences
+> with it — "nothing actionable reaches the patient before human authorization"
+> and the "where available" qualifier on reference checks. The suite caught it.
+> Those sentences now live in `.guardrails` beneath the diagram and must stay in
+> text, not in a picture.
 
 ---
 
