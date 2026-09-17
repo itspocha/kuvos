@@ -235,7 +235,10 @@ circular flywheel rendered its labels at **6.2px** on a 390px phone — measured
 estimated. A font-size media query cannot fix that, because the whole coordinate
 space is being scaled by 0.39. The narrow variants (`.wheel-tall`, `.net-tall`) use
 a 420-unit viewBox instead of 900, so the same nominal size renders more than twice
-as large, and they run as a vertical sequence rather than a circle. Swap at 900px.
+as large, **The arrangement stays the same** — the flywheel is still a circle and the network
+is still a triangle. Only the coordinate space shrinks. What gives way to make room
+is the outer captions, which the guardrail copy and the section lede already carry.
+Swap at 900px.
 
 > Put the `display:none` media query **after** the `.wheel`/`.net` base rules.
 > Media queries add no specificity, so a later `display:block` silently wins — the

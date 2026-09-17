@@ -270,31 +270,30 @@
         <text class="net-sub" x="450" y="512">companion surface</text>
       </g>
     </svg>
-    <svg class="net-tall" viewBox="0 0 420 408" role="img" aria-labelledby="ntTitle ntDesc" focusable="false">
+    <svg class="net-tall" viewBox="0 0 400 424" role="img" aria-labelledby="ntTitle ntDesc" focusable="false">
       <title id="ntTitle">The three-surface network</title>
       <desc id="ntDesc">One authorised protocol reaches the patient on three surfaces: the smartphone and the Smart TV as primary surfaces, and the smartwatch as a companion that extends reach without becoming a standalone clinical device.</desc>
-      <rect class="net-core" x="70" y="6" width="280" height="62" rx="31"/>
-      <text class="net-core-t tall" x="210" y="39">One authorised protocol</text>
-      <path class="net-link primary" d="M 58 76 L 58 98"/>
+      <defs><marker id="ntArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11 z" class="net-head"/></marker></defs>
+      <rect class="net-core" x="104" y="166" width="192" height="60" rx="30"/>
+      <text class="net-core-t tall" x="200" y="194">One authorised</text>
+      <text class="net-core-t tall" x="200" y="216">protocol</text>
+      <path class="net-link primary" d="M 174 174 L 95 107" marker-end="url(#ntArrow)" marker-start="url(#ntArrow)"/>
+      <path class="net-link primary" d="M 226 174 L 305 107" marker-end="url(#ntArrow)" marker-start="url(#ntArrow)"/>
+      <path class="net-link companion" d="M 200 230 L 200 292" marker-end="url(#ntArrow)" marker-start="url(#ntArrow)"/>
       <g class="net-node primary">
-        <circle class="net-disc" cx="58" cy="138" r="34"/>
-        <g class="net-icon" transform="translate(58 138)"><rect x="-9" y="-14" width="18" height="28" rx="3.5"/><path d="M-3.5 10h7"/></g>
-        <text class="net-label tall" x="108" y="134">Smartphone</text>
-        <text class="net-sub tall" x="108" y="158">primary · personal control</text>
+        <circle class="net-disc" cx="62" cy="78" r="38"/>
+        <g class="net-icon" transform="translate(62 74)"><rect x="-9" y="-14" width="18" height="28" rx="3.5"/><path d="M-3.5 10h7"/></g>
+        <text class="net-label tall" x="62" y="24">Smartphone</text>
       </g>
-      <path class="net-link primary" d="M 58 178 L 58 198"/>
       <g class="net-node primary">
-        <circle class="net-disc" cx="58" cy="238" r="34"/>
-        <g class="net-icon" transform="translate(58 238)"><rect x="-15" y="-11" width="30" height="21" rx="3.5"/><path d="M-6 14h12"/></g>
-        <text class="net-label tall" x="108" y="234">Smart TV</text>
-        <text class="net-sub tall" x="108" y="258">primary · ambient clinical</text>
+        <circle class="net-disc" cx="338" cy="78" r="38"/>
+        <g class="net-icon" transform="translate(338 74)"><rect x="-15" y="-11" width="30" height="21" rx="3.5"/><path d="M-6 14h12"/></g>
+        <text class="net-label tall" x="338" y="24">Smart TV</text>
       </g>
-      <path class="net-link companion" d="M 58 278 L 58 298"/>
       <g class="net-node companion">
-        <circle class="net-disc" cx="58" cy="338" r="34"/>
-        <g class="net-icon" transform="translate(58 338)"><rect x="-10" y="-9" width="20" height="18" rx="5"/><path d="M-5 -9v-6h10v6M-5 9v6h10v-6"/></g>
-        <text class="net-label tall" x="108" y="334">Smartwatch</text>
-        <text class="net-sub tall" x="108" y="358">companion surface</text>
+        <circle class="net-disc" cx="200" cy="336" r="38"/>
+        <g class="net-icon" transform="translate(200 332)"><rect x="-10" y="-9" width="20" height="18" rx="5"/><path d="M-5 -9v-6h10v6M-5 9v6h10v-6"/></g>
+        <text class="net-label tall" x="200" y="396">Smartwatch</text>
       </g>
     </svg>
     <div class="a11y rv">
@@ -376,47 +375,50 @@
         <text class="wheel-sub" x="168.5" y="230.5" text-anchor="end">only what is allowed</text>
       </g>
     </svg>
-    <svg class="wheel-tall" viewBox="0 0 420 624" role="img" aria-labelledby="wtTitle wtDesc" focusable="false">
+    <svg class="wheel-tall" viewBox="0 0 400 404" role="img" aria-labelledby="wtTitle wtDesc" focusable="false">
       <title id="wtTitle">The care-plan flywheel</title>
       <desc id="wtDesc">Five stages in a loop: a source care plan is ingested, held in a Locked Draft State, authorised by a person, confirmed by the patient as one clear next action, and shared with a permissioned Care Circle, which feeds the next plan.</desc>
       <defs><marker id="wtArrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11 z" class="wheel-arrowhead"/></marker></defs>
-      <path class="wheel-arc" d="M 58 98 L 58 126" marker-end="url(#wtArrow)"/>
+      <circle class="wheel-orbit" cx="200" cy="196" r="139"/>
+      <path class="wheel-arc" d="M 256.0 68.8 A 139 139 0 0 1 300.7 100.2" marker-end="url(#wtArrow)"/>
+      <path class="wheel-arc lit" d="M 338.3 209.9 A 139 139 0 0 1 326.3 254.1" marker-end="url(#wtArrow)"/>
+      <path class="wheel-arc" d="M 220.7 333.4 A 139 139 0 0 1 174.8 332.7" marker-end="url(#wtArrow)"/>
+      <path class="wheel-arc" d="M 79.9 266.0 A 139 139 0 0 1 62.2 214.3" marker-end="url(#wtArrow)"/>
+      <path class="wheel-arc" d="M 96.3 103.4 A 139 139 0 0 1 140.0 70.6" marker-end="url(#wtArrow)"/>
+      <circle class="wheel-core" cx="200" cy="196" r="49"/>
+      <text class="wheel-core-t tall" x="200" y="194">One clear</text>
+      <text class="wheel-core-t tall" x="200" y="216">next action</text>
       <g class="wheel-node plain">
-        <circle class="wheel-disc" cx="58" cy="62" r="30"/>
-        <text class="wheel-num tall" x="58" y="70">1</text>
-        <text class="wheel-label tall" x="108" y="58">Source care plan</text>
-        <text class="wheel-sub tall" x="108" y="82">authorised plan ingested</text>
+        <circle class="wheel-disc" cx="200.0" cy="57.0" r="47"/>
+        <text class="wheel-num tall" x="200.0" y="29.0">1</text>
+        <text class="wheel-label tall" x="200.0" y="54.0">Source care</text>
+        <text class="wheel-label tall" x="200.0" y="70.0">plan</text>
       </g>
-      <path class="wheel-arc lit" d="M 58 202 L 58 224" marker-end="url(#wtArrow)"/>
       <g class="wheel-node guard">
-        <circle class="wheel-disc" cx="58" cy="166" r="30"/>
-        <text class="wheel-num tall" x="58" y="174">2</text>
-        <text class="wheel-label tall" x="108" y="162">Locked Draft State</text>
-        <text class="wheel-sub tall" x="108" y="186">held, not yet actionable</text>
+        <circle class="wheel-disc" cx="332.2" cy="153.0" r="47"/>
+        <text class="wheel-num tall" x="332.2" y="125.0">2</text>
+        <text class="wheel-label tall" x="332.2" y="150.0">Locked</text>
+        <text class="wheel-label tall" x="332.2" y="166.0">Draft State</text>
       </g>
-      <path class="wheel-arc" d="M 58 312 L 58 334" marker-end="url(#wtArrow)"/>
       <g class="wheel-node auth">
-        <circle class="wheel-disc" cx="58" cy="270" r="36"/>
-        <text class="wheel-num tall" x="58" y="278">3</text>
-        <text class="wheel-label tall" x="114" y="266">Human authorization</text>
-        <text class="wheel-sub tall" x="114" y="290">a person approves</text>
-      </g>
-      <path class="wheel-arc" d="M 58 410 L 58 438" marker-end="url(#wtArrow)"/>
-      <g class="wheel-node plain">
-        <circle class="wheel-disc" cx="58" cy="374" r="30"/>
-        <text class="wheel-num tall" x="58" y="382">4</text>
-        <text class="wheel-label tall" x="108" y="370">Patient confirmation</text>
-        <text class="wheel-sub tall" x="108" y="394">one action, confirmed</text>
+        <circle class="wheel-disc" cx="281.7" cy="308.5" r="55"/>
+        <text class="wheel-num tall" x="281.7" y="272.5">3</text>
+        <text class="wheel-label tall" x="281.7" y="305.5">Human</text>
+        <text class="wheel-label tall" x="281.7" y="321.5">authorization</text>
       </g>
       <g class="wheel-node plain">
-        <circle class="wheel-disc" cx="58" cy="478" r="30"/>
-        <text class="wheel-num tall" x="58" y="486">5</text>
-        <text class="wheel-label tall" x="108" y="474">Permissioned Care Circle</text>
-        <text class="wheel-sub tall" x="108" y="498">only what is allowed</text>
+        <circle class="wheel-disc" cx="118.3" cy="308.5" r="47"/>
+        <text class="wheel-num tall" x="118.3" y="280.5">4</text>
+        <text class="wheel-label tall" x="118.3" y="305.5">Patient</text>
+        <text class="wheel-label tall" x="118.3" y="321.5">confirmation</text>
       </g>
-      <path class="wheel-arc loop" d="M 58 514 C 14 558, 14 12, 58 30" marker-end="url(#wtArrow)"/>
-      <text class="wheel-core-t tall" x="210" y="570">One clear next action</text>
-      <text class="wheel-core-s tall" x="210" y="594">for the patient</text>
+      <g class="wheel-node plain">
+        <circle class="wheel-disc" cx="67.8" cy="153.0" r="47"/>
+        <text class="wheel-num tall" x="67.8" y="125.0">5</text>
+        <text class="wheel-label tall" x="67.8" y="142.0"></text>
+        <text class="wheel-label tall" x="67.8" y="158.0">Permissioned</text>
+        <text class="wheel-label tall" x="67.8" y="174.0">Care Circle</text>
+      </g>
     </svg>
 
     <!-- The flywheel is the picture; these two sentences are load-bearing for

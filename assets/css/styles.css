@@ -430,15 +430,15 @@ em,.acc{font-family:var(--f-acc);font-style:italic;font-weight:400;letter-spacin
   .wheel-tall{margin-block:clamp(26px,5vw,40px) 0}
   .net-tall{margin-block:clamp(24px,4vw,36px) clamp(18px,3vw,28px)}
 }
-.wheel-label.tall{font-size:17px;text-anchor:start}
-.wheel-sub.tall{font-size:13px;text-anchor:start}
-.wheel-num.tall{font-size:17px}
-.wheel-core-t.tall{font-size:19px}
-.wheel-core-s.tall{font-size:12px}
-.wheel-arc.loop{stroke-dasharray:4 6}
-.net-label.tall{font-size:19px;text-anchor:start}
-.net-sub.tall{font-size:12.5px;text-anchor:start}
-.net-core-t.tall{font-size:18px}
+.wheel-label.tall{font-size:15px;text-anchor:middle}
+
+.wheel-num.tall{font-size:13px}
+.wheel-core-t.tall{font-size:16px}
+.wheel-core-s.tall{font-size:10px}
+
+.net-label.tall{font-size:17px;text-anchor:middle}
+
+.net-core-t.tall{font-size:16px}
 
 /* ── reviewer screen ── */
 .rev{background:var(--white);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-l)}
